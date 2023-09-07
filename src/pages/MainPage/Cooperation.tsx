@@ -76,7 +76,8 @@ const Cooperation = () => {
 						opacity: 0,
 						x: -150,
 					}}
-					whileInView={{ opacity: 1, x: 0 }}
+					  viewport={{ once: true }} whileInView
+={{ opacity: 1, x: 0 }}
 					transition={{ delay: 0.6 }}
 				>
 					<h2 className="section_title text-center">
@@ -88,7 +89,8 @@ const Cooperation = () => {
 						opacity: 0,
 						x: 150,
 					}}
-					whileInView={{ opacity: 1, x: 0 }}
+					  viewport={{ once: true }} whileInView
+={{ opacity: 1, x: 0 }}
 					transition={{ delay: 0.6 }}
 				>
 					{device === "pc" ? (

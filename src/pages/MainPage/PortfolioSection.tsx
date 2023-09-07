@@ -9,7 +9,8 @@ const PortfolioSection = () => {
 					opacity: 0,
 					x: -150,
 				}}
-				whileInView={{ opacity: 1, x: 0 }}
+				  viewport={{ once: true }} whileInView
+={{ opacity: 1, x: 0 }}
 				transition={{ delay: 0.6 }}
 				className="flex flex-col items-start w-1/2"
 			>
@@ -78,7 +79,8 @@ const PortfolioSection = () => {
 						opacity: 0,
 						x: 150,
 					}}
-					whileInView={{ opacity: 1, x: 0 }}
+					  viewport={{ once: true }} whileInView
+={{ opacity: 1, x: 0 }}
 					transition={{
 						duration: 0.8,
 						delay: 0.7,

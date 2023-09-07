@@ -20,7 +20,8 @@ const Service = () => {
 					opacity: 0,
 					x: -150,
 				}}
-				whileInView={{ opacity: 1, x: 0 }}
+				  viewport={{ once: true }} whileInView
+={{ opacity: 1, x: 0 }}
 				transition={{ delay: 0.6 }}
 			>
 				<SectionsTitle title={title} startTitleBold={startTitleBold}  />
@@ -31,7 +32,8 @@ const Service = () => {
 						opacity: 0,
 						x: -150,
 					}}
-					whileInView={{ opacity: 1, x: 0 }}
+					  viewport={{ once: true }} whileInView
+={{ opacity: 1, x: 0 }}
 					transition={{ delay: 0.6 }}
 					className="flex flex-col items-start md:w-1/2 gap-[29px] relative md:pl-[99px]"
 				>
@@ -60,7 +62,8 @@ const Service = () => {
 							opacity: 0,
 							x: 150,
 						}}
-						whileInView={{ opacity: 1, x: 0 }}
+						  viewport={{ once: true }} whileInView
+={{ opacity: 1, x: 0 }}
 						transition={{
 							duration: 0.8,
 							delay: 0.7,

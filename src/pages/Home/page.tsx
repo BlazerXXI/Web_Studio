@@ -19,7 +19,8 @@ const Home = () => {
 			{isLoading ? (
 				<motion.div
 					initial={{ opacity: 0 }}
-					whileInView={{ opacity: 1 }}
+					  viewport={{ once: true }} whileInView
+={{ opacity: 1 }}
 					exit={{ opacity: 0 }}
 					className="text-5xl font-bold w-full flex justify-center items-center gap-8 h-screen"
 				>

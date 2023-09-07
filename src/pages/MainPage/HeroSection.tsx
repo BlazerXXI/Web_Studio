@@ -10,6 +10,7 @@ const HeroSection = () => {
 						opacity: 0,
 						x: -15,
 					}}
+					viewport={{ once: true }}
 					whileInView={{ opacity: 1, x: 0 }}
 					transition={{ delay: 0.3 }}
 					className="flex flex-col items-start gap-5 w-1/2"
@@ -30,6 +31,7 @@ const HeroSection = () => {
 						opacity: 0,
 						x: 150,
 					}}
+					viewport={{ once: true }}
 					whileInView={{ opacity: 1, x: 0 }}
 					transition={{ delay: 0.3 }}
 					className="w-1/2 hidden md:flex justify-center items-center relative"
