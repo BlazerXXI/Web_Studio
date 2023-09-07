@@ -20,11 +20,11 @@ const Service = () => {
 					opacity: 0,
 					x: -150,
 				}}
-				  viewport={{ once: true }} whileInView
-={{ opacity: 1, x: 0 }}
+				viewport={{ once: true }}
+				whileInView={{ opacity: 1, x: 0 }}
 				transition={{ delay: 0.6 }}
 			>
-				<SectionsTitle title={title} startTitleBold={startTitleBold}  />
+				<SectionsTitle title={title} startTitleBold={startTitleBold} />
 			</motion.div>
 			<div className="service__container _container flex row md:gap-12 gap-0 items-center">
 				<motion.div
@@ -32,24 +32,25 @@ const Service = () => {
 						opacity: 0,
 						x: -150,
 					}}
-					  viewport={{ once: true }} whileInView
-={{ opacity: 1, x: 0 }}
+					viewport={{ once: true }}
+					whileInView={{ opacity: 1, x: 0 }}
 					transition={{ delay: 0.6 }}
 					className="flex flex-col items-start md:w-1/2 gap-[29px] relative md:pl-[99px]"
 				>
 					<h2 className="font-normal service-title section_title">
-						<span className="font-bold"> Графический дизайн </span>
+						<span className="font-bold"> Программирование </span>
 					</h2>
 					<h3 className="font-normal md:text-4xl text-[28px] green-vertical-line md:mt-11 mt-6">
-						Фантазия безгранична
+						Превосходя ожидания
 					</h3>
 					<p className="text-[#808594] md:text-base text-sm font-normal">
-						С первых дней работы компании «Веб студия» Графический дизайн — один
-						из самых востребованных навыков наших сотрудников. Без этого навыка
-						не обойтись, когда нужно заслужить доверие клиента и добиться, чтобы
-						конечный продукт безупречно работал и отлично выглядел. Обширный
-						опыт оказания услуг в такой сфере, как Графический дизайн, позволяет
-						нам учитывать все требования и пожелания клиентов.
+						Если вы хотите заинтересовать целевую аудиторию и завладеть ее
+						вниманием, без продуманного и сильного пользовательского интерфейса
+						не обойтись. Такая услуга в нашей компании, как Программирование,
+						может сыграть важную роль в успешном продвижении вашего бренда и
+						бизнеса. От эскиза и до конечного продукта мы всегда придерживаемся
+						основного замысла заказчика, используя наши дизайнерские решения и
+						ноу-хау для его идеального воплощения.
 					</p>
 					<button className="btn-primary py-5 px-10 mt-[10px]">
 						Связаться с нами
@@ -62,8 +63,8 @@ const Service = () => {
 							opacity: 0,
 							x: 150,
 						}}
-						  viewport={{ once: true }} whileInView
-={{ opacity: 1, x: 0 }}
+						viewport={{ once: true }}
+						whileInView={{ opacity: 1, x: 0 }}
 						transition={{
 							duration: 0.8,
 							delay: 0.7,
