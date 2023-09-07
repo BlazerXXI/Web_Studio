@@ -22,8 +22,8 @@ const GraphicDesign = () => {
 					opacity: 0,
 					x: -150,
 				}}
-				  viewport={{ once: true }} whileInView
-={{ opacity: 1, x: 0 }}
+				viewport={{ once: true }}
+				whileInView={{ opacity: 1, x: 0 }}
 				transition={{ delay: 0.6 }}
 			>
 				<SetionsTitle
@@ -41,8 +41,8 @@ const GraphicDesign = () => {
 							opacity: 0,
 							x: 150,
 						}}
-						  viewport={{ once: true }} whileInView
-={{ opacity: 1, x: 0 }}
+						viewport={{ once: true }}
+						whileInView={{ opacity: 1, x: 0 }}
 						transition={{
 							duration: 0.8,
 							delay: 0.7,
@@ -61,8 +61,8 @@ const GraphicDesign = () => {
 						opacity: 0,
 						x: -150,
 					}}
-					  viewport={{ once: true }} whileInView
-={{ opacity: 1, x: 0 }}
+					viewport={{ once: true }}
+					whileInView={{ opacity: 1, x: 0 }}
 					transition={{ delay: 0.6 }}
 					className="flex flex-col items-start md:w-1/2 gap-[29px] relative md:pr-[99px]"
 				>

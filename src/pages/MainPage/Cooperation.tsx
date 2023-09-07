@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { motion } from "framer-motion";
 import { ICoopItem } from "../../types";
+import SectionsTitle from "../../components/SetionsTitle/page";
 
 const Cooperation = () => {
 	const [device, setDevice] = useState("pc");
@@ -31,6 +32,11 @@ const Cooperation = () => {
 				"С 2017 года мы помогаем нашим клиентам  добиваться успеха и побеждать в конкурентной борьбе",
 		},
 	];
+
+	const titleData = {
+		startTitleBold: "Безупречное ",
+		title: "сотрудничество",
+	};
 
 	const sliderSettings = {
 		dots: false,
@@ -76,21 +82,22 @@ const Cooperation = () => {
 						opacity: 0,
 						x: -150,
 					}}
-					  viewport={{ once: true }} whileInView
-={{ opacity: 1, x: 0 }}
+					viewport={{ once: true }}
+					whileInView={{ opacity: 1, x: 0 }}
 					transition={{ delay: 0.6 }}
 				>
-					<h2 className="section_title text-center">
-						<span className="font-bold">Безупречное</span> сотрудничество
-					</h2>
+					<SectionsTitle
+						startTitleBold={titleData.startTitleBold}
+						title={titleData.title}
+					></SectionsTitle>
 				</motion.div>
 				<motion.div
 					initial={{
 						opacity: 0,
 						x: 150,
 					}}
-					  viewport={{ once: true }} whileInView
-={{ opacity: 1, x: 0 }}
+					viewport={{ once: true }}
+					whileInView={{ opacity: 1, x: 0 }}
 					transition={{ delay: 0.6 }}
 				>
 					{device === "pc" ? (
