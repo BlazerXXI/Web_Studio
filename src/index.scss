@@ -483,13 +483,13 @@ main {
 
 @keyframes floating {
 	from {
-		transform: translateY(0);
+		transform: none;
 	}
 	50% {
 		transform: translateY(2rem) rotateY(-20deg) rotateX(-5deg);
 	}
 	to {
-		transform: translateY(0);
+		transform: none;
 	}
 }
 

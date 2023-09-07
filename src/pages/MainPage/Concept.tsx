@@ -1,4 +1,4 @@
-import SetionsTitle from "../../components/SetionsTitle/page";
+import SectionsTitle from "../../components/SectionsTitle/page";
 import { ITitle } from "../../types";
 import { motion } from "framer-motion";
 import React from "react";
@@ -61,7 +61,7 @@ const Concept = () => {
 					whileInView={{ opacity: 1, x: 0 }}
 					transition={{ delay: 0.6 }}
 				>
-					<SetionsTitle
+					<SectionsTitle
 						title={title}
 						centerTitleBold={centerTitleBold}
 						endTitle={endTitle}

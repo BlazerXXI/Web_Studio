@@ -12,4 +12,16 @@ export interface ITitle {
 	centerTitle?: string;
 	endTitle?: string;
 	endTitleBold?: string;
+	classList?: string;
+}
+
+export interface ICoin {
+	id: number;
+	img: string;
+	supTitle: string;
+	title: string;
+	price: string;
+	volume: string;
+	change: string;
+	change7d: string;
 }

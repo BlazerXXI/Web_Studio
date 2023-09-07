@@ -1,5 +1,7 @@
 import React from "react";
-import SetionsTitle from "../../components/SetionsTitle/page";
+import { motion } from "framer-motion";
+import SectionsTitle from "../../components/SectionsTitle/page";
+import TrackingWindow from "../../components/TrackingWindow/TrackingWindow";
 
 const Tracking = () => {
 	const titleData = {
@@ -9,13 +11,33 @@ const Tracking = () => {
 	};
 
 	return (
-		<>
-			<SetionsTitle
-				startTitleBold={titleData.startTitleBold}
-				title={titleData.title}
-				endTitleBold={titleData.endTitleBold}
-			/>
-		</>
+		<div
+			className="
+			tracking__container _container"
+		>
+			<motion.div
+				initial={{ opacity: 0, x: -150 }}
+				whileInView={{ opacity: 1, x: 0 }}
+				viewport={{ once: true }}
+				transition={{ delay: 0.6 }}
+			>
+				<SectionsTitle
+					startTitleBold={titleData.startTitleBold}
+					title={titleData.title}
+					endTitleBold={titleData.endTitleBold}
+					classList={"max-w-[678px] m-auto"}
+				/>
+			</motion.div>
+			<motion.div
+				initial={{ opacity: 0, x: -150 }}
+				whileInView={{ opacity: 1, x: 0 }}
+				viewport={{ once: true }}
+				transition={{ delay: 0.6 }}
+				className="md:mt-[96px] mt-[100px]"
+			>
+				<TrackingWindow />
+			</motion.div>
+		</div>
 	);
 };
 

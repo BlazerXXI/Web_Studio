@@ -1,6 +1,6 @@
 import { ITitle } from "../../types";
 import { motion } from "framer-motion";
-import SectionsTitle from "../../components/SetionsTitle/page";
+import SectionsTitle from "../../components/SectionsTitle/page";
 import React from "react";
 
 const Service = () => {

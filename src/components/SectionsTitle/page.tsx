@@ -1,10 +1,16 @@
 import { ITitle } from "../../types";
 
-const SetionsTitle = (props: ITitle) => {
-	const { startTitleBold, title, centerTitleBold, endTitle, endTitleBold } =
-		props;
+const SectionsTitle = (props: ITitle) => {
+	const {
+		startTitleBold,
+		title,
+		centerTitleBold,
+		endTitle,
+		endTitleBold,
+		classList,
+	} = props;
 	return (
-		<div className="section-title">
+		<div className={`section-title ${classList}`}>
 			<h2 className="md:text-[55px] text-[36px] text-[#808594] text-center font-normal">
 				<span className="font-bold">{startTitleBold}</span>
 				{title}
@@ -15,4 +21,4 @@ const SetionsTitle = (props: ITitle) => {
 		</div>
 	);
 };
-export default SetionsTitle;
+export default SectionsTitle;

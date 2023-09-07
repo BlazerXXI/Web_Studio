@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { motion } from "framer-motion";
 import { ICoopItem } from "../../types";
-import SectionsTitle from "../../components/SetionsTitle/page";
+import SectionsTitle from "../../components/SectionsTitle/page";
 
 const Cooperation = () => {
 	const [device, setDevice] = useState("pc");
