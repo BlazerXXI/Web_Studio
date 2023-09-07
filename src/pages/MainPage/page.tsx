@@ -5,6 +5,7 @@ import Cooperation from "./Cooperation";
 import GraphicDesign from "./GraphicDesign";
 import Service from "./Service";
 import Concept from "./Concept";
+import Tracking from "./Tracking";
 
 const MainPage = () => {
 	return (
@@ -26,6 +27,9 @@ const MainPage = () => {
 			</section>
 			<section className="concept mt-[100px] md:mt-[1px]" id="concept">
 				<Concept />
+			</section>
+			<section className="tracking mt-[100px] md:mt-[150px]" id="tracking">
+				<Tracking />
 			</section>
 		</main>
 	);
