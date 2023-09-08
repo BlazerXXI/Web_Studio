@@ -18,6 +18,8 @@ export interface ITitle {
 export interface ICoin {
 	id: number;
 	img: string;
+	changeTwentyFourHours: string;
+	changeSevenDays: string;
 	supTitle: string;
 	title: string;
 	price: string;

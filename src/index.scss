@@ -43,7 +43,7 @@ body {
 	width: 100%;
 	font-size: 100%;
 	line-height: 1;
-	font-size: 14px;
+	font-size: 16px;
 	color: #000;
 }
 
@@ -525,5 +525,23 @@ main {
 		h2 {
 			color: #fff !important;
 		}
+	}
+}
+
+.trackingCoin {
+	font-weight: 500;
+}
+.trackingCoin:hover {
+	position: relative;
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 116px;
+		right: -116px;
+		bottom: 0;
+		background-color: transparent;
+		z-index: -1;
+		transition: background-color 0.3s ease;
 	}
 }
