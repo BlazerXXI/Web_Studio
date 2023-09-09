@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { motion } from "framer-motion";
-import { ICoopItem } from "../../types";
+import { ICoopItem } from "../../types/types";
 import SectionsTitle from "../../components/SectionsTitle/page";
 
 const Cooperation = () => {

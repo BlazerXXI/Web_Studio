@@ -1,6 +1,6 @@
 import React from "react";
 import TrackingCoin from "./TrackingCoin";
-import { ICoin } from "../../types";
+import { ICoin } from "../../types/types";
 
 const TrackingWindow = () => {
 	const coinsData: ICoin[] = [

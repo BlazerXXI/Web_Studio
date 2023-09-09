@@ -1,13 +1,14 @@
-import React from "react";
-import { ICoin } from "../../types";
-
-const isActive = false;
+import React, { useState } from "react";
+import { ICoin } from "../../types/types";
+import styles from "./TrackingCoin.module.scss";
 
 const TrackingCoin = (props: ICoin) => {
+	const [isActive, setIsActive] = useState(false);
+
 	return (
 		<tr
 			className={`trackingCoin ${
-				isActive ? "" : null
+				isActive ? styles.active : ""
 			} flex items-center justify-between transition-all duration-300 cursor-pointer`}
 		>
 			<td className="flex justify-center gap-[15px] items-center w-1/5 ">

@@ -1,5 +1,5 @@
 import SectionsTitle from "../../components/SectionsTitle/page";
-import { ITitle } from "../../types";
+import { ITitle } from "../../types/types";
 import { motion } from "framer-motion";
 import React from "react";
 

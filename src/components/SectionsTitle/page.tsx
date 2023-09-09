@@ -1,4 +1,4 @@
-import { ITitle } from "../../types";
+import { ITitle } from "../../types/types";
 
 const SectionsTitle = (props: ITitle) => {
 	const {

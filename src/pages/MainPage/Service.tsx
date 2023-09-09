@@ -1,4 +1,4 @@
-import { ITitle } from "../../types";
+import { ITitle } from "../../types/types";
 import { motion } from "framer-motion";
 import SectionsTitle from "../../components/SectionsTitle/page";
 import React from "react";
