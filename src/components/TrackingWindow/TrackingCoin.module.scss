@@ -3,6 +3,11 @@
 	border-radius: 18px;
 	padding: 15px 44px;
 	transform: translateX(-116px);
-	transition: background-color 0.3s ease, border-radius 0.3s ease,
-		padding 0.3s ease, transform 0.3s ease;
+	transition: all 0.3s ease 0s;
+}
+@media (max-width: 768px) {
+	.active {
+		transform: translateX(0);
+		padding: 15px;
+	}
 }

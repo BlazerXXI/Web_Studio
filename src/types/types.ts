@@ -26,4 +26,5 @@ export interface ICoin {
 	volume: string;
 	change: string;
 	change7d: string;
+	activeCoin: number;
 }
