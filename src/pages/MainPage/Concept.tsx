@@ -1,7 +1,10 @@
+import { useSelector } from "react-redux";
 import SectionsTitle from "../../components/SectionsTitle/page";
 import { ITitle } from "../../types/types";
 import { motion } from "framer-motion";
 import React from "react";
+import { TDeviceState } from "../../store/deviceSlice";
+import { TIdGeneratorState } from "../../store/idGeneratorSlice";
 
 const Concept = () => {
 	const titleData: ITitle[] = [
@@ -10,6 +13,9 @@ const Concept = () => {
 			endTitleBold: "Концепт",
 		},
 	];
+
+	const deviceSize = useSelector((state: TDeviceState) => state.device.size);
+	const idGenerator = useSelector((state: TIdGeneratorState) => state.id);
 
 	const conceptData = [
 		{
@@ -87,6 +93,7 @@ const Concept = () => {
 									opacity: 0,
 									x: -150,
 								}}
+								viewport={{ once: true }}
 								whileInView={{ opacity: 1, x: 0 }}
 								transition={{ delay: 0.6 }}
 								className="md:w-1/2"
@@ -104,6 +111,7 @@ const Concept = () => {
 									opacity: 0,
 									x: 150,
 								}}
+								viewport={{ once: true }}
 								whileInView={{ opacity: 1, x: 0 }}
 								transition={{ delay: 0.4 }}
 								className="flex flex-col gap-8 z-[10]"
