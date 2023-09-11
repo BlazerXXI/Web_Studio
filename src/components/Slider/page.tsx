@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const Slider = () => {
-	const [activeSlider, setActiveSlider] = useState(1);
+	const [activeSlider, setActiveSlider] = useState(0);
 
 	const sliderData = [
 		{
@@ -59,10 +59,10 @@ const Slider = () => {
 		};
 
 		return () => clearInterval(interval);
-	}, [sliderData?.length]);
+	}, [activeSlider, sliderData?.length]);
 	return (
 		<>
-			<ul className="flex justify-center hero-list mt-5 md:mt-0">
+			<ul className="hero-list mt-5 md:mt-0">
 				{sliderData.map((slide) => (
 					<li
 						key={slide.id}

@@ -34,7 +34,7 @@ const HeroSection = () => {
 					viewport={{ once: true }}
 					whileInView={{ opacity: 1, x: 0 }}
 					transition={{ delay: 0.3 }}
-					className="w-1/2 hidden md:flex justify-center items-center relative"
+					className="w-1/2 hidden md:block justify-center items-center relative"
 				>
 					<Slider />
 				</motion.div>
