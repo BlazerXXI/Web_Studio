@@ -84,7 +84,7 @@ const Cooperation = () => {
 					}}
 					viewport={{ once: true }}
 					whileInView={{ opacity: 1, x: 0 }}
-					transition={{ delay: 0.6 }}
+					transition={{ delay: 0.3 }}
 				>
 					<SectionsTitle
 						startTitleBold={titleData.startTitleBold}
@@ -98,7 +98,7 @@ const Cooperation = () => {
 					}}
 					viewport={{ once: true }}
 					whileInView={{ opacity: 1, x: 0 }}
-					transition={{ delay: 0.6 }}
+					transition={{ delay: 0.3 }}
 				>
 					{device === "pc" ? (
 						<ul className="flex items-start text-center justify-center mt-28 gap-14 pb-12">

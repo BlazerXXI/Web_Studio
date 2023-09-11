@@ -11,7 +11,7 @@ const PortfolioSection = () => {
 				}}
 				  viewport={{ once: true }} whileInView
 ={{ opacity: 1, x: 0 }}
-				transition={{ delay: 0.6 }}
+				transition={{ delay: 0.3 }}
 				className="flex flex-col items-start w-1/2"
 			>
 				<h2 className="font-normal portfolio-title section_title">

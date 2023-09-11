@@ -59,7 +59,7 @@ const Concept = () => {
 					}}
 					viewport={{ once: true }}
 					whileInView={{ opacity: 1, x: 0 }}
-					transition={{ delay: 0.6 }}
+					transition={{ delay: 0.3 }}
 				>
 					<SectionsTitle
 						title={title}
@@ -77,34 +77,44 @@ const Concept = () => {
 				}}
 				whileInView={{ opacity: 1, x: 0 }}
 				viewport={{ once: true }}
-				transition={{ delay: 0.6 }}
+				transition={{ delay: 0.3 }}
 			>
 				<ul className="__container">
 					{conceptData.map((concept) => (
 						<li className="flex max-xl:flex-col items-center" key={concept.id}>
-							<div className="md:w-1/2">
-								<motion.img
-									initial={{
-										x: -150,
-									}}
-									whileInView={{ opacity: 1, x: 0 }}
-									transition={{ delay: 0.6 }}
-									viewport={{ once: true }}
+							<motion.div
+								initial={{
+									opacity: 0,
+									x: -150,
+								}}
+								whileInView={{ opacity: 1, x: 0 }}
+								transition={{ delay: 0.6 }}
+								className="md:w-1/2"
+							>
+								<img
 									className="max-md:w-full float-image max-md:h-auto"
 									src={concept.img}
 									alt={concept.alt + "img"}
 									width={concept.width}
 									height={concept.height}
 								/>
-							</div>
-							<div className="flex flex-col gap-8 z-[10]">
+							</motion.div>
+							<motion.div
+								initial={{
+									opacity: 0,
+									x: 150,
+								}}
+								whileInView={{ opacity: 1, x: 0 }}
+								transition={{ delay: 0.4 }}
+								className="flex flex-col gap-8 z-[10]"
+							>
 								<h3 className="font-bold text-[28px] md:text-[36px]">
 									{concept.title}
 								</h3>
 								<p className="text-[#808594] text-[14px] md:text-[16px] font-['Montserrat', sans-serif] leading-[186%]">
 									{concept.subTitle}
 								</p>
-							</div>
+							</motion.div>
 						</li>
 					))}
 				</ul>

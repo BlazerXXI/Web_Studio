@@ -19,7 +19,7 @@ const Tracking = () => {
 				initial={{ opacity: 0, x: -150 }}
 				whileInView={{ opacity: 1, x: 0 }}
 				viewport={{ once: true }}
-				transition={{ delay: 0.6 }}
+				transition={{ delay: 0.3 }}
 			>
 				<SectionsTitle
 					startTitleBold={titleData.startTitleBold}
@@ -32,7 +32,7 @@ const Tracking = () => {
 				initial={{ opacity: 0, x: -150 }}
 				whileInView={{ opacity: 1, x: 0 }}
 				viewport={{ once: true }}
-				transition={{ delay: 0.6 }}
+				transition={{ delay: 0.3 }}
 				className="md:mt-[96px] mt-[100px]"
 			>
 				<TrackingWindow />

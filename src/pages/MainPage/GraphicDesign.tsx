@@ -24,7 +24,7 @@ const GraphicDesign = () => {
 				}}
 				viewport={{ once: true }}
 				whileInView={{ opacity: 1, x: 0 }}
-				transition={{ delay: 0.6 }}
+				transition={{ delay: 0.3 }}
 			>
 				<SectionsTitle
 					title={title}
@@ -63,7 +63,7 @@ const GraphicDesign = () => {
 					}}
 					viewport={{ once: true }}
 					whileInView={{ opacity: 1, x: 0 }}
-					transition={{ delay: 0.6 }}
+					transition={{ delay: 0.3 }}
 					className="flex flex-col items-start md:w-1/2 gap-[29px] relative md:pr-[99px]"
 				>
 					<h2 className="font-normal GraphicDesign-title section_title">
