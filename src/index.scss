@@ -272,7 +272,8 @@ main {
 		background-position: center;
 		background-repeat: repeat;
 		background-size: cover;
-		z-index: -1;
+		z-index: -2;
+		position: relative;
 		animation: moveBg 10s linear infinite alternate forwards running;
 
 		@media (min-width: 768px) {

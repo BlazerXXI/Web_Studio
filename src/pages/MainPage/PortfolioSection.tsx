@@ -9,8 +9,8 @@ const PortfolioSection = () => {
 					opacity: 0,
 					x: -150,
 				}}
-				  viewport={{ once: true }} whileInView
-={{ opacity: 1, x: 0 }}
+				viewport={{ once: true }}
+				whileInView={{ opacity: 1, x: 0 }}
 				transition={{ delay: 0.3 }}
 				className="flex flex-col items-start w-1/2"
 			>
@@ -22,7 +22,7 @@ const PortfolioSection = () => {
 					Идеи. Концепт. Стратегия. Разработка.
 				</p>
 				<ul className="text-[#808594] portfolio_list flex flex-col gap-11 text-base font-normal md:mt-16 mt-12">
-					<li className="flex items-center gap-14 ">
+					<li className="flex rounded px-2 items-center gap-14 ">
 						<img
 							className="h-auto"
 							src="./img/portfolio/icons-list.svg"
@@ -30,12 +30,12 @@ const PortfolioSection = () => {
 							width={55}
 							height={55}
 						/>
-						<p>
+						<p className=" ">
 							Мы предоставляем широкий спектр услуг в области веб-разработки и
 							воплощаем в жизнь идеи клиентов.
 						</p>
 					</li>
-					<li className="flex items-center gap-14 ">
+					<li className="flex rounded px-2 items-center gap-14 ">
 						<img
 							className="h-auto"
 							src="./img/portfolio/icons-list.svg"
@@ -43,13 +43,13 @@ const PortfolioSection = () => {
 							width={55}
 							height={55}
 						/>
-						<p>
+						<p className=" ">
 							Работая над проектом, мы уделяем особое внимание деталям и
 							стремимся к тому, чтобы созданный сайт был красивым,
 							функциональным и удобным.
 						</p>
 					</li>
-					<li className="flex items-center gap-14 ">
+					<li className="flex rounded px-2 items-center gap-14 ">
 						<img
 							className="h-auto"
 							src="./img/portfolio/icons-list.svg"
@@ -57,7 +57,7 @@ const PortfolioSection = () => {
 							width={55}
 							height={55}
 						/>
-						<p>
+						<p className=" ">
 							Ознакомьтесь с нашим портфолио и посмотрите, что мы можем
 							предложить вам от лендингов на популярных CMS до абсолютно
 							индивидуальных решений с надежным и защищенным ядром.
@@ -79,8 +79,8 @@ const PortfolioSection = () => {
 						opacity: 0,
 						x: 150,
 					}}
-					  viewport={{ once: true }} whileInView
-={{ opacity: 1, x: 0 }}
+					viewport={{ once: true }}
+					whileInView={{ opacity: 1, x: 0, zIndex: -1 }}
 					transition={{
 						duration: 0.8,
 						delay: 0.7,

@@ -55,7 +55,7 @@ const Service = () => {
 					<button className="btn-primary py-5 px-10 mt-[10px]">
 						Связаться с нами
 					</button>
-					<i className="before:bg-[#161B2E] md:before:rounded-[50px] md:before:w-[88vw] before:h-[130%] before:w-screen max-md:before:-mr-[30px] before:-mt-[10%] before:absolute  before:-z-10 before:top-0 before:right-0 md:before:left-0" />
+					<i className="before:bg-[#161B2E] md:before:rounded-[50px] md:before:w-[88vw] before:max-md:-mr-[30px] before:h-[110%] before:w-screen before:-mt-[10%] before:absolute  before:-z-10 before:top-0 before:right-0 md:before:left-0" />
 				</motion.div>
 				<div className="w-1/2 hidden md:flex justify-center items-center relative">
 					<motion.img

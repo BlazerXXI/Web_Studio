@@ -1,10 +1,7 @@
-import { useSelector } from "react-redux";
+import React from "react";
 import SectionsTitle from "../../components/SectionsTitle/page";
 import { ITitle } from "../../types/types";
 import { motion } from "framer-motion";
-import React from "react";
-import { TDeviceState } from "../../store/deviceSlice";
-import { TIdGeneratorState } from "../../store/idGeneratorSlice";
 
 const Concept = () => {
 	const titleData: ITitle[] = [
@@ -14,12 +11,16 @@ const Concept = () => {
 		},
 	];
 
-	const deviceSize = useSelector((state: TDeviceState) => state.device.size);
-	const idGenerator = useSelector((state: TIdGeneratorState) => state.id);
+	let currentId = 0;
+
+	const coinId = () => {
+		currentId++;
+		return currentId;
+	};
 
 	const conceptData = [
 		{
-			id: 1,
+			id: coinId(),
 			img: "./img/concept/phone.svg",
 			alt: "Phone",
 			width: "776",
@@ -30,7 +31,7 @@ const Concept = () => {
 				"Мы по-настоящему гордимся этим проектом, в котором нам предстояло сделать выполнение повседневных бизнес-задач клиента более простым и эффективным. Требовалась концепция, которая способствовала бы более продуктивному взаимодействию пользователей с сайтом.В тесном сотрудничестве со специалистами компании нам удалось разработать продукт, который очень понравился заказчику.",
 		},
 		{
-			id: 2,
+			id: coinId(),
 			img: "./img/concept/tablet.svg",
 			alt: "Phone",
 			width: "755.721",
@@ -41,7 +42,7 @@ const Concept = () => {
 				"В проекте для компании «Модернизация взаимодействия с пользователем» нужно было сделать дизайн сайта максимально привлекательным без ущерба для функциональности. Благодаря обширному опыту веб-разработки нам удалось справиться с этой задачей. С гордостью можем сказать, что конечный продукт получился превосходным.",
 		},
 		{
-			id: 3,
+			id: coinId(),
 			img: "./img/concept/descktop.svg",
 			alt: "Phone",
 			width: "820",
