@@ -2,6 +2,11 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const Header = () => {
+
+	const loginHandle = () => {
+		console.log('make redux state login')
+	};
+
 	return (
 		<motion.header
 			initial={{ y: -100 }}
@@ -33,7 +38,10 @@ const Header = () => {
 					<a href="">
 						<img src="/img/header/link.svg" width="30" height="30" alt="link" />
 					</a>
-					<button className="btn-primary hidden md:block py-2 px-5">
+					<button
+						onClick={loginHandle}
+						className="btn-primary hidden md:block py-2 px-5"
+					>
 						<p className="m-auto">Log in</p>
 					</button>
 				</div>

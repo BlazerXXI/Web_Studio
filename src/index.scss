@@ -491,10 +491,10 @@ main {
 }
 
 .float-image {
-	z-index: 1;
-	top: -230px;
-	right: 0;
 	animation: floating 3.5s ease-in-out infinite;
+	@media (max-width: 768px) {
+		animation: floating 9.5s ease-in-out infinite;
+	}
 }
 
 @keyframes floating {

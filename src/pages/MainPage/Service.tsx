@@ -14,7 +14,7 @@ const Service = () => {
 	const { startTitleBold, title } = titleData[0];
 
 	return (
-		<div className="service__container _container  flex flex-col gap-[100px] md:gap-[21px]">
+		<div className="service__container _container  flex flex-col gap-[100px] md:gap-[21px] max-md:px-0">
 			<motion.div
 				initial={{
 					opacity: 0,
