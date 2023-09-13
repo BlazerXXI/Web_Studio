@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
+import { setLogin } from "../../store/loginSlice";
+import { setLoginPopup } from "../../store/loginPopupSlice";
 
 const Header = () => {
+	const login = useSelector((state: any) => state.login.login);
+	const loginPopup = useSelector((state: any) => state.loginPopup.loginPopup);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		const isLogin = localStorage.getItem("login") === "true" ? true : false;
+		dispatch(setLogin(isLogin));
+	});
 
 	const loginHandle = () => {
-		console.log('make redux state login')
+		!login ? dispatch(setLogin(true)) : dispatch(setLogin(false));
+		!loginPopup
+			? dispatch(setLoginPopup(true))
+			: dispatch(setLoginPopup(false));
+		localStorage.setItem("login", JSON.stringify(!login));
+		localStorage.setItem("loginTime", Date().slice(16, 25));
+		console.log(loginPopup);
 	};
 
 	return (
@@ -38,12 +55,23 @@ const Header = () => {
 					<a href="">
 						<img src="/img/header/link.svg" width="30" height="30" alt="link" />
 					</a>
-					<button
-						onClick={loginHandle}
-						className="btn-primary hidden md:block py-2 px-5"
-					>
-						<p className="m-auto">Log in</p>
-					</button>
+					{!login ? (
+						<button
+							onClick={loginHandle}
+							className="btn-primary hidden md:block py-2 px-5"
+						>
+							<p className="m-auto">Log in</p>
+						</button>
+					) : (
+						<a href="#" onClick={loginHandle}>
+							<img
+								src="/img/header/avatar.svg"
+								width="30"
+								height="30"
+								alt="avatar"
+							/>
+						</a>
+					)}
 				</div>
 			</div>
 		</motion.header>

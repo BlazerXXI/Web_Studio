@@ -1,12 +1,15 @@
- 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Header from "../../components/Header/page";
 import MainPage from "../MainPage/page";
 import Footer from "../../components/Footer/page";
+import { useDispatch, useSelector } from "react-redux";
+import LoginPopup from "../../components/LoginPopup/LoginPopup";
 
 const Home = () => {
 	const [isLoading, setIsLoading] = useState(true);
+	const loginPopup = useSelector((state: any) => state.loginPopup.loginPopup);
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		setTimeout(() => {
@@ -19,8 +22,8 @@ const Home = () => {
 			{isLoading ? (
 				<motion.div
 					initial={{ opacity: 0 }}
-					  viewport={{ once: true }} whileInView
-={{ opacity: 1 }}
+					viewport={{ once: true }}
+					whileInView={{ opacity: 1 }}
 					exit={{ opacity: 0 }}
 					className="text-5xl font-bold w-full flex justify-center items-center gap-8 h-screen"
 				>
@@ -35,6 +38,7 @@ const Home = () => {
 			) : (
 				<div className="wrapper">
 					<Header />
+					{!loginPopup ? <LoginPopup /> : null}
 					<MainPage />
 					<Footer />
 				</div>
