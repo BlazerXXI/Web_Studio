@@ -8,13 +8,13 @@ const Header = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		localStorage.setItem("login", JSON.stringify(login));
 		const loginRes = localStorage.getItem("login") === "true" ? true : false;
 		dispatch(setLogin(loginRes));
 	}, [dispatch, login]);
 
 	const loginHandle = () => {
 		dispatch(setLogin(!login));
+		localStorage.setItem("login", JSON.stringify(!login));
 	};
 	return (
 		<motion.header
@@ -41,10 +41,10 @@ const Header = () => {
 					<a href="#">Блог</a>
 				</nav>
 				<div className="flex gap-4 items-center header-icons">
-					<a href="">
+					<a href="#">
 						<img src="/img/header/bag.svg" width="30" height="30" alt="bag" />
 					</a>
-					<a href="">
+					<a href="#">
 						<img src="/img/header/link.svg" width="30" height="30" alt="link" />
 					</a>
 					{!login ? (
