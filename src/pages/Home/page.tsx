@@ -8,7 +8,8 @@ import LoginPopup from "../../components/LoginPopup/LoginPopup";
 
 const Home = () => {
 	const [isLoading, setIsLoading] = useState(true);
-	const loginPopup = useSelector((state: any) => state.loginPopup.loginPopup);
+
+	const login = useSelector((state: any) => state.user.login);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -38,7 +39,7 @@ const Home = () => {
 			) : (
 				<div className="wrapper">
 					<Header />
-					{!loginPopup ? <LoginPopup /> : null}
+					{login ? <LoginPopup /> : null}
 					<MainPage />
 					<Footer />
 				</div>

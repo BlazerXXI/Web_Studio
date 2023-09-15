@@ -1,14 +1,10 @@
 // src/store/store.ts
 import { configureStore } from "@reduxjs/toolkit";
-import deviceReducer from "./deviceSlice";
-import loginSlice from "./loginSlice";
-import loginPopupSlice from "./loginPopupSlice";
+import userSlice from "./userSlice";
 
 const store = configureStore({
 	reducer: {
-		device: deviceReducer,
-		login: loginSlice,
-		loginPopup: loginPopupSlice,
+		user: userSlice,
 	},
 });
 

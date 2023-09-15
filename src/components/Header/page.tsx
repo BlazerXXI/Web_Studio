@@ -1,29 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
-import { setLogin } from "../../store/loginSlice";
-import { setLoginPopup } from "../../store/loginPopupSlice";
+import { setLogin } from "../../store/userSlice";
 
 const Header = () => {
-	const login = useSelector((state: any) => state.login.login);
-	const loginPopup = useSelector((state: any) => state.loginPopup.loginPopup);
+	const login = useSelector((state: any) => state.user.login);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		const isLogin = localStorage.getItem("login") === "true" ? true : false;
-		dispatch(setLogin(isLogin));
-	});
+		localStorage.setItem("login", JSON.stringify(login));
+		const loginRes = localStorage.getItem("login") === "true" ? true : false;
+		dispatch(setLogin(loginRes));
+	}, [dispatch, login]);
 
 	const loginHandle = () => {
-		!login ? dispatch(setLogin(true)) : dispatch(setLogin(false));
-		!loginPopup
-			? dispatch(setLoginPopup(true))
-			: dispatch(setLoginPopup(false));
-		localStorage.setItem("login", JSON.stringify(!login));
-		localStorage.setItem("loginTime", Date().slice(16, 25));
-		console.log(loginPopup);
+		dispatch(setLogin(!login));
 	};
-
 	return (
 		<motion.header
 			initial={{ y: -100 }}
