@@ -19,7 +19,6 @@ const MenuUI = () => {
 	} else if (window.location.href === window.location.origin + "/blog") {
 		setPage("Blog");
 	}
-	console.log(page);
 
 	return (
 		<div>
