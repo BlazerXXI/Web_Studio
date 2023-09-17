@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { setLogin } from "../../store/userSlice";
-import { IconButton, Menu, MenuItem } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import MenuUI from "../Menu/MenuUI";
 
 const Header = () => {
-	const [isOpen, setIsOpen] = useState(false);
 	const login = useSelector((state: any) => state.user.login);
 	const dispatch = useDispatch();
 
@@ -18,10 +16,6 @@ const Header = () => {
 	const loginHandle = () => {
 		dispatch(setLogin(!login));
 		localStorage.setItem("login", JSON.stringify(!login));
-	};
-
-	const handleClickMenu = () => {
-		setIsOpen(!isOpen);
 	};
 
 	return (
@@ -56,34 +50,7 @@ const Header = () => {
 						<img src="/img/header/link.svg" width="30" height="30" alt="link" />
 					</a>
 					<div>
-						<IconButton
-							aria-label="menu"
-							aria-controls="menu"
-							aria-haspopup="true"
-							onClick={handleClickMenu}
-							color="inherit"
-							className="z-10"
-						>
-							<MenuIcon />
-						</IconButton>
-						<Menu
-							id="menu"
-							anchorEl={isOpen ? document.body : null}
-							open={isOpen}
-							onClose={handleClickMenu}
-						>
-							<MenuItem onClick={handleClickMenu}>
-								<a className="active-nav" href="./">
-									Главная
-								</a>
-							</MenuItem>
-							<MenuItem onClick={handleClickMenu}>
-								<a href="#">Магазин</a>
-							</MenuItem>
-							<MenuItem onClick={handleClickMenu}>
-								<a href="#">Блог</a>
-							</MenuItem>
-						</Menu>
+						<MenuUI />
 					</div>
 					{!login ? (
 						<button
