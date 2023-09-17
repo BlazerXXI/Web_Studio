@@ -565,8 +565,12 @@ main {
 	z-index: 5;
 }
 .MuiPaper-root {
+	margin-top: 81px;
+	position: absolute;
 	top: 0 !important;
 	left: 0 !important;
+	width: 100vw;
+	height: 100vh;
 	@media (max-width: 768px) {
 		padding: 0 1rem;
 	}
