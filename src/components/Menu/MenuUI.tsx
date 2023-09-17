@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import style from "./Menu.module.scss";
 
 const MenuUI = () => {
-	const [isOpen, setIsOpen] = useState(true);
+	const [isOpen, setIsOpen] = useState(false);
 	const [page, setPage] = useState("Home");
 
 	const handleClickMenu = () => {

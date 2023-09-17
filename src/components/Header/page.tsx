@@ -22,7 +22,7 @@ const Header = () => {
 		<motion.header
 			initial={{ y: -100 }}
 			animate={{ y: 0 }}
-			className="header py-5 fixed w-full z-40"
+			className="header py-5 fixed w-full"
 		>
 			<div className="header__container container flex justify-between items-center">
 				<div className="header__logo">
