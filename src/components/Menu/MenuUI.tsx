@@ -3,13 +3,17 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import React, { useState } from "react";
 import style from "./Menu.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { setMenuState } from "../../store/menuSlice";
 
 const MenuUI = () => {
-	const [isOpen, setIsOpen] = useState(false);
+	const menuState = useSelector((state: any) => state.menu.open);
+	const dispatch = useDispatch();
+
 	const [page, setPage] = useState("Home");
 
 	const handleClickMenu = () => {
-		setIsOpen(!isOpen);
+		dispatch(setMenuState(!menuState));
 	};
 
 	if (window.location.href === window.location.origin + "") {
@@ -21,7 +25,7 @@ const MenuUI = () => {
 	}
 
 	return (
-		<div>
+		<div className="md:hidden">
 			<IconButton
 				aria-label="menu"
 				aria-controls="menu"
@@ -30,12 +34,17 @@ const MenuUI = () => {
 				color="inherit"
 				className="z-10"
 			>
-				{isOpen ? <CloseIcon /> : <MenuIcon />}
+				{menuState ? <CloseIcon /> : <MenuIcon />}
 			</IconButton>
 			<Menu
 				id="menu"
-				anchorEl={isOpen ? document.body : null}
-				open={isOpen}
+				anchorEl={menuState ? document.body : null}
+				open={menuState}
+				marginThreshold={0}
+				anchorOrigin={{
+					vertical: "top",
+					horizontal: "right",
+				}}
 				onClose={handleClickMenu}
 			>
 				<MenuItem onClick={handleClickMenu}>
