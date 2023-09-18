@@ -605,3 +605,20 @@ main {
 .MuiMenu-root {
 	z-index: 50 !important;
 }
+
+// login-popup
+.login-popup {
+	* {
+		color: #696f79;
+	}
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #fff;
+	z-index: 1000;
+	width: 100vw;
+	height: 100vh;
+	input {
+		color: #696f79;
+	}
+}

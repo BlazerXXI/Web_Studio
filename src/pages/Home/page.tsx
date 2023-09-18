@@ -4,12 +4,13 @@ import Header from "../../components/Header/page";
 import MainPage from "../MainPage/page";
 import Footer from "../../components/Footer/page";
 import { useDispatch, useSelector } from "react-redux";
-import LoginPopup from "../../components/LoginPopup/LoginPopup";
+import LoginPopupComponent from "../../components/LoginPopup/LoginPopup";
 
 const Home = () => {
 	const [isLoading, setIsLoading] = useState(true);
 
 	const login = useSelector((state: any) => state.user.login);
+	const LoginPopup = useSelector((state: any) => state.user.login);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -39,7 +40,7 @@ const Home = () => {
 			) : (
 				<div className="wrapper">
 					<Header />
-					{login ? <LoginPopup /> : null}
+					{ LoginPopup ? <LoginPopupComponent /> : null}
 					<MainPage />
 					<Footer />
 				</div>
