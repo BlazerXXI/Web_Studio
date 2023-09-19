@@ -90,7 +90,7 @@ const Header = () => {
 					<MenuUI />
 					{!login ? (
 						<button
-							onClick={loginHandle}
+							onClick={LoginPopupFunc}
 							className="btn-primary hidden md:block py-2 px-5"
 						>
 							<p className="m-auto">Log in</p>

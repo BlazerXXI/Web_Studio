@@ -1,4 +1,4 @@
-import React from "react";
+import React, { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.scss";
 import App from "./App";
@@ -26,7 +26,9 @@ const root = ReactDOM.createRoot(
 </head>;
 
 root.render(
-	<Provider store={store}>
-		<App />
-	</Provider>
+	<StrictMode>
+		<Provider store={store}>
+			<App />
+		</Provider>
+	</StrictMode>
 );
