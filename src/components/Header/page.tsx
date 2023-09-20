@@ -6,7 +6,6 @@ import MenuUI from "../Menu/MenuUI";
 
 const Header = () => {
 	const login = useSelector((state: any) => state.user.login);
-	const LoginPopup = useSelector((state: any) => state.user.login);
 	const menuState = useSelector((state: any) => state.menu.open);
 	const dispatch = useDispatch();
 
@@ -18,12 +17,6 @@ const Header = () => {
 	const loginHandle = () => {
 		dispatch(setLogin(!login));
 		localStorage.setItem("login", JSON.stringify(!login));
-	};
-
-	const LoginPopupFunc = () => {
-		loginHandle();
-
-		dispatch(setLogin(!LoginPopup));
 	};
 
 	return (
@@ -72,7 +65,7 @@ const Header = () => {
 						</div>
 					) : !login ? (
 						<button
-							onClick={LoginPopupFunc}
+							onClick={loginHandle}
 							className="btn-primary md:hidden py-2 px-4 max-[340px]:text-xs"
 						>
 							<p className="m-auto leading-4">Log in</p>
@@ -90,7 +83,7 @@ const Header = () => {
 					<MenuUI />
 					{!login ? (
 						<button
-							onClick={LoginPopupFunc}
+							onClick={loginHandle}
 							className="btn-primary hidden md:block py-2 px-5"
 						>
 							<p className="m-auto">Log in</p>
