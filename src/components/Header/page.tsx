@@ -14,9 +14,17 @@ const Header = () => {
 		dispatch(setLogin(loginRes));
 	}, [dispatch, login]);
 
-	const loginHandle = () => {
+	const loginSet = () => {
 		dispatch(setLogin(!login));
 		localStorage.setItem("login", JSON.stringify(!login));
+	};
+
+	const loginHandle = () => {
+		loginSet();
+	};
+
+	const logOutHandle = () => {
+		loginSet();
 	};
 
 	return (
@@ -40,13 +48,13 @@ const Header = () => {
 					<a className="active-nav" href="./">
 						Главная
 					</a>
-					<a href="#">Магазин</a>
-					<a href="#">Блог</a>
+					<a href="/">Магазин</a>
+					<a href="/">Блог</a>
 				</nav>
 				<div className="flex gap-4 items-center header-icons">
 					{!menuState ? (
 						<div className="flex gap-5">
-							<a href="#">
+							<a href="/">
 								<img
 									src="/img/header/bag.svg"
 									width="30"
@@ -54,7 +62,7 @@ const Header = () => {
 									alt="bag"
 								/>
 							</a>
-							<a href="#">
+							<a href="/">
 								<img
 									src="/img/header/link.svg"
 									width="30"
@@ -68,10 +76,10 @@ const Header = () => {
 							onClick={loginHandle}
 							className="btn-primary md:hidden py-2 px-4 max-[340px]:text-xs"
 						>
-							<p className="m-auto leading-4">Log in</p>
+							<p className="m-auto leading-4 loginButton">Log in</p>
 						</button>
 					) : (
-						<a href="#" className=" md:hidden" onClick={loginHandle}>
+						<a href="/" className=" md:hidden" onClick={logOutHandle}>
 							<img
 								src="/img/header/avatar.svg"
 								width="30"
@@ -86,10 +94,10 @@ const Header = () => {
 							onClick={loginHandle}
 							className="btn-primary hidden md:block py-2 px-5"
 						>
-							<p className="m-auto">Log in</p>
+							<p className="m-auto loginButton">Log in</p>
 						</button>
 					) : (
-						<a href="#" className="hidden md:block" onClick={loginHandle}>
+						<a href="/" className="hidden md:block" onClick={logOutHandle}>
 							<img
 								src="/img/header/avatar.svg"
 								width="30"
