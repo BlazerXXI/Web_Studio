@@ -5,6 +5,7 @@ import { setLogin } from "../../store/userSlice";
 import MenuUI from "../Menu/MenuUI";
 import { setLoginPopup } from "../../store/loginPopup";
 import LoginPopupUi from "../LoginPopupUi/LoginPopupUi";
+import { doc } from "prettier";
 
 const Header = () => {
 	const login = useSelector((state: any) => state.user.login);
@@ -15,7 +16,7 @@ const Header = () => {
 	useEffect(() => {
 		const loginRes = localStorage.getItem("login") === "true" ? true : false;
 		dispatch(setLogin(loginRes));
-	}, [dispatch, login]);
+	}, [dispatch]);
 
 	const loginSet = () => {
 		dispatch(setLogin(!login));
@@ -23,7 +24,6 @@ const Header = () => {
 	};
 
 	const loginHandle = () => {
-		loginSet();
 		dispatch(setLoginPopup(true));
 	};
 
