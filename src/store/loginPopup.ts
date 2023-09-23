@@ -6,7 +6,7 @@ interface popupState {
 }
 
 const initialState: popupState = {
-	visible: true,
+	visible: false,
 };
 
 const loginPopup = createSlice({
