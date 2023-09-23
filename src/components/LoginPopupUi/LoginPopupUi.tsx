@@ -66,7 +66,7 @@ const LoginPopupUi = () => {
 				onClick={closePopup}
 				className="backgroundPopup fixed h-screen w-screen top-0 left-0 bg-[#00000080]"
 			></i>
-			<div className="LoginPopupUi fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+			<div className="LoginPopupUi  fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
 				<div
 					className="bg-[#ffffff] rounded-[50px] w-[669px] h-[1062px] px-[121px] py-[90px]"
 					style={{ boxShadow: "0px 4px 250px 0px rgba(0, 0, 0, 1.00)" }}
@@ -81,7 +81,7 @@ const LoginPopupUi = () => {
 							height={19}
 						/>
 					</div>
-					<div className="flex flex-col gap-10 justify-center items-center">
+					<div className="flex flex-col md:gap-10 gap-5 justify-center items-center">
 						<div>
 							<a href="/">
 								<img
@@ -93,7 +93,7 @@ const LoginPopupUi = () => {
 							</a>
 						</div>
 						<div>
-							<div className="flex flex-col justify-center items-center gap-10">
+							<div className="flex flex-col justify-center items-center md:gap-10 gap-5">
 								<p className=" text-slate-400 text-lg font-normal font-['Montserrat'] leading-7">
 									Войдите в Ваш аккаунт через соцсети
 								</p>
