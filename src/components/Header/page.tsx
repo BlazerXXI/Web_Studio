@@ -32,8 +32,6 @@ const Header = () => {
 		dispatch(setLoginPopup(false));
 	};
 
-	console.log(loginPopup);
-
 	return (
 		<motion.header
 			initial={{ y: -100 }}
