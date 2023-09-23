@@ -220,7 +220,7 @@ const LoginPopupUi = () => {
 								<div className="mt-7">
 									<button
 										type="submit"
-										className="  bg-blue-950 py-6 rounded-3xl flex justify-center w-full text-center text-white text-base font-medium font-['Montserrat']"
+										className="hover:scale-105 active:scale-95 transition-all duration-300  bg-blue-950 py-6 rounded-3xl flex justify-center w-full text-center text-white text-base font-medium font-['Montserrat']"
 									>
 										Зарегистрироваться
 									</button>

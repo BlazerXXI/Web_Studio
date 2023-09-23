@@ -551,6 +551,31 @@ main {
 	}
 }
 
+.tracking {
+	position: relative;
+	&::after {
+		margin-top: 50px;
+		content: "";
+		display: block;
+		width: 100vw;
+		height: 123px;
+		background: linear-gradient(180deg, #141927 0%, #0e121e 100%);
+		background-image: url("../public/img/tracking/bg.png");
+		background-position: center;
+		background-repeat: repeat;
+		background-size: cover;
+		z-index: -2;
+		position: relative;
+		animation: moveBg 10s linear infinite alternate forwards running;
+
+		@media (min-width: 768px) {
+			width: 100vw;
+			height: 277px;
+			animation: moveBg 30s ease infinite alternate forwards running;
+		}
+	}
+}
+
 .trackingCoin {
 	font-weight: 500;
 }
