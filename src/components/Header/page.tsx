@@ -3,9 +3,12 @@ import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { setLogin } from "../../store/userSlice";
 import MenuUI from "../Menu/MenuUI";
+import { setLoginPopup } from "../../store/loginPopup";
+import LoginPopupUi from "../LoginPopupUi/LoginPopupUi";
 
 const Header = () => {
 	const login = useSelector((state: any) => state.user.login);
+	const loginPopup = useSelector((state: any) => state.popup.visible);
 	const menuState = useSelector((state: any) => state.menu.open);
 	const dispatch = useDispatch();
 
@@ -21,11 +24,15 @@ const Header = () => {
 
 	const loginHandle = () => {
 		loginSet();
+		dispatch(setLoginPopup(true));
 	};
 
 	const logOutHandle = () => {
 		loginSet();
+		dispatch(setLoginPopup(false));
 	};
+
+	console.log(loginPopup);
 
 	return (
 		<motion.header
@@ -33,6 +40,7 @@ const Header = () => {
 			animate={{ y: 0 }}
 			className="header py-5 fixed w-full"
 		>
+			{loginPopup ? <LoginPopupUi /> : null}
 			<div className="header__container container flex justify-between items-center">
 				<div className="header__logo">
 					<a href="/">
@@ -79,14 +87,14 @@ const Header = () => {
 							<p className="m-auto leading-4 loginButton">Log in</p>
 						</button>
 					) : (
-						<a href="/" className=" md:hidden" onClick={logOutHandle}>
+						<button className=" md:hidden" onClick={logOutHandle}>
 							<img
 								src="/img/header/avatar.svg"
 								width="30"
 								height="30"
 								alt="avatar"
 							/>
-						</a>
+						</button>
 					)}
 					<MenuUI />
 					{!login ? (
@@ -97,14 +105,14 @@ const Header = () => {
 							<p className="m-auto loginButton">Log in</p>
 						</button>
 					) : (
-						<a href="/" className="hidden md:block" onClick={logOutHandle}>
+						<button className="hidden md:block" onClick={logOutHandle}>
 							<img
 								src="/img/header/avatar.svg"
 								width="30"
 								height="30"
 								alt="avatar"
 							/>
-						</a>
+						</button>
 					)}
 				</div>
 			</div>
