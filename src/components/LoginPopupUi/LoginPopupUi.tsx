@@ -100,13 +100,9 @@ const LoginPopupUi = () => {
 			transition={{ delay: 0.3 }}
 			className="h-full w-full fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#00000080] z-[500] overflow-y-scroll"
 		>
-			<i
-				onClick={closePopup}
-				className="backgroundPopup fixed h-full w-full top-0 left-0 "
-			></i>
-			<div className="LoginPopupUi w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+			<div className="LoginPopupUi w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:flex md:justify-center md:items-center">
 				<div
-					className="bg-[#ffffff] md:rounded-[50px] md:w-[669px] md:h-[1062px]  md:px-[121px] px-5 md:py-[90px] py-[45px] z-[500] m-auto "
+					className="bg-[#ffffff] md:rounded-[50px] md:w-[669px] md:h-[1062px]  md:px-[121px] px-5 md:py-[90px] py-[45px] z-[500]  "
 					style={{
 						boxShadow: "0px 4px 250px 0px rgba(0, 0, 0, 1.00)",
 						position: "relative",
