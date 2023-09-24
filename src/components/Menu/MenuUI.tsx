@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setMenuState } from "../../store/menuSlice";
 
 const MenuUI = () => {
+	const loginPopup = useSelector((state: any) => state.popup.visible);
 	const menuState = useSelector((state: any) => state.menu.open);
 	const dispatch = useDispatch();
 
@@ -26,16 +27,19 @@ const MenuUI = () => {
 
 	return (
 		<div className="md:hidden">
-			<IconButton
-				aria-label="menu"
-				aria-controls="menu"
-				aria-haspopup="true"
-				onClick={handleClickMenu}
-				color="inherit"
-				className="z-10"
-			>
-				{menuState ? <CloseIcon /> : <MenuIcon />}
-			</IconButton>
+			{!loginPopup ? (
+				<IconButton
+					aria-label="menu"
+					aria-controls="menu"
+					aria-haspopup="true"
+					onClick={handleClickMenu}
+					color="inherit"
+					className="z-10"
+				>
+					{menuState ? <CloseIcon /> : <MenuIcon />}
+				</IconButton>
+			) : null}
+
 			<Menu
 				id="menu"
 				anchorEl={menuState ? document.body : null}

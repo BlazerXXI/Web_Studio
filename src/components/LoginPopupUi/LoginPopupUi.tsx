@@ -49,6 +49,7 @@ const LoginPopupUi = () => {
 		},
 	];
 
+	const email = document.querySelector("#email");
 	const password = document.querySelector("#password");
 	const confirmation = document.querySelector("#confirmation");
 	const checkbox = document.querySelector("#checkbox");
@@ -68,10 +69,14 @@ const LoginPopupUi = () => {
 			></i>
 			<div className="LoginPopupUi  fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
 				<div
-					className="bg-[#ffffff] rounded-[50px] w-[669px] h-[1062px] px-[121px] py-[90px]"
-					style={{ boxShadow: "0px 4px 250px 0px rgba(0, 0, 0, 1.00)" }}
+					className="bg-[#ffffff] md:rounded-[50px] md:w-[669px] md:h-[1062px] w-screen h-screen md:px-[121px] px-5 md:py-[90px] py-[45px] z-[500]"
+					style={{
+						boxShadow: "0px 4px 250px 0px rgba(0, 0, 0, 1.00)",
+						overflow: "auto",
+						position: "relative",
+					}}
 				>
-					<div className="absolute top-[45px] right-[45px] ">
+					<div className="absolute md:top-[45px] md:right-[45px] top-[20px] right-[20px]">
 						<img
 							onClick={closePopup}
 							className="close cursor-pointer"
@@ -83,18 +88,16 @@ const LoginPopupUi = () => {
 					</div>
 					<div className="flex flex-col md:gap-10 gap-5 justify-center items-center">
 						<div>
-							<a href="/">
-								<img
-									src="./img/popupLoginUi/logo.svg"
-									alt="logo"
-									width={212}
-									height={55}
-								/>
-							</a>
+							<img
+								src="./img/popupLoginUi/logo.svg"
+								alt="logo"
+								width={212}
+								height={55}
+							/>
 						</div>
-						<div>
+						<div className="w-full">
 							<div className="flex flex-col justify-center items-center md:gap-10 gap-5">
-								<p className=" text-slate-400 text-lg font-normal font-['Montserrat'] leading-7">
+								<p className=" text-slate-400 md:text-lg text-sm font-normal font-['Montserrat'] leading-7">
 									Войдите в Ваш аккаунт через соцсети
 								</p>
 								<ul className="flex flex-row gap-4 justify-center items-center">
@@ -117,7 +120,7 @@ const LoginPopupUi = () => {
 									))}
 								</ul>
 							</div>
-							<div className="my-[25px] flex flexrow items-center gap-7">
+							<div className="md:my-[25px] flex flexrow items-center gap-7 my-[20px]">
 								<span className="w-44 h-px flex bg-neutral-100"></span>
 								<p className="text-center text-zinc-400 text-xs font-normal font-['Montserrat']">
 									или
@@ -130,16 +133,18 @@ const LoginPopupUi = () => {
 								onSubmit={(e) => {
 									e.preventDefault();
 								}}
-								className="flex flex-col text-black gap-[17px]"
+								className="flex flex-col text-black md:gap-[17px] gap-[10px]"
 							>
 								<label className="text-gray-500 text-base" htmlFor="email">
 									E-mail или Имя пользователя
 								</label>
 								<input
+									name="email"
+									autoComplete="email"
 									type="email"
 									id="email"
 									required
-									className="px-7 py-5 rounded-3xl border border-solid border-slate-500 justify-start items-start gap-2.5 inline-flex"
+									className="px-7 py-5 rounded-3xl border text-base border-solid border-slate-500 justify-start items-start gap-2.5 inline-flex"
 									placeholder="Напишите свой E-mail"
 								/>
 								<label className="text-gray-500 text-base" htmlFor="password">
@@ -147,10 +152,12 @@ const LoginPopupUi = () => {
 								</label>
 								<div className="relative">
 									<input
+										name="password"
+										autoComplete="current-password"
 										type={passwordVisible ? "text" : "password"}
 										id="password"
 										required
-										className="passwordShow px-7 py-5 rounded-3xl border border-solid border-slate-500 w-full "
+										className="passwordShow px-7 py-5 rounded-3xl border text-base border-solid border-slate-500 w-full "
 										placeholder="Введите пароль"
 									/>
 									<img
@@ -173,10 +180,12 @@ const LoginPopupUi = () => {
 								</label>
 								<div className="relative">
 									<input
+										name="password"
+										autoComplete="current-password"
 										type={passwordVisible ? "text" : "password"}
 										id="confirmation"
 										required
-										className="passwordShow px-7 py-5 rounded-3xl border border-solid border-slate-500 w-full "
+										className="passwordShow px-7 py-5 rounded-3xl border text-base border-solid border-slate-500 w-full "
 										placeholder="Введите пароль"
 									/>
 									<img
