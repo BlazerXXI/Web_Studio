@@ -10,6 +10,7 @@ const LoginPopupUi = () => {
 	const menuState = useSelector((state: any) => state.menu.open);
 	const dispatch = useDispatch();
 
+	const [passwordError, setPasswordError] = useState("");
 	const [passwordVisible, setPasswordVisible] = useState(false);
 	const [checked, setChecked] = useState(false);
 
@@ -49,10 +50,45 @@ const LoginPopupUi = () => {
 		},
 	];
 
-	const email = document.querySelector("#email");
-	const password = document.querySelector("#password");
-	const confirmation = document.querySelector("#confirmation");
-	const checkbox = document.querySelector("#checkbox");
+	const email = document.querySelector("#email") as HTMLInputElement;
+	const password = document.querySelector("#password") as HTMLInputElement;
+	const confirmation = document.querySelector(
+		"#confirmation"
+	) as HTMLInputElement;
+	const checkbox = document.querySelector("#checkbox") as HTMLInputElement;
+
+	const onSubmit = (e: any) => {
+		e.preventDefault();
+
+		if (email && password) {
+			if (confirmation) {
+				if (password.value === confirmation.value) {
+					if (password.value.length < 8) {
+						setPasswordError("Пароль должен содержать не менее 8 символов.");
+					} else if (!/\d/.test(password.value)) {
+						setPasswordError("Пароль должен содержать хотя бы одну цифру.");
+					} else {
+						setPasswordError("");
+						dispatch(setLoginPopup(false));
+						dispatch(setLogin(true));
+					}
+				} else {
+					setPasswordError("Пароли не совпадают");
+				}
+			} else {
+				if (password.value.length < 8) {
+					setPasswordError("Пароль должен содержать не менее 8 символов.");
+				} else if (!/\d/.test(password.value)) {
+					setPasswordError("Пароль должен содержать хотя бы одну цифру.");
+				} else {
+					setPasswordError("");
+					dispatch(setLoginPopup(false));
+					dispatch(setLogin(true));
+				}
+			}
+			return false;
+		}
+	};
 
 	return (
 		<motion.div
@@ -62,17 +98,17 @@ const LoginPopupUi = () => {
 			viewport={{ once: true }}
 			whileInView={{ opacity: 1 }}
 			transition={{ delay: 0.3 }}
+			className="h-full w-full fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#00000080] z-[500] overflow-y-scroll"
 		>
 			<i
 				onClick={closePopup}
-				className="backgroundPopup fixed h-screen w-screen top-0 left-0 bg-[#00000080]"
+				className="backgroundPopup fixed h-full w-full top-0 left-0 "
 			></i>
-			<div className="LoginPopupUi  fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+			<div className="LoginPopupUi w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
 				<div
-					className="bg-[#ffffff] md:rounded-[50px] md:w-[669px] md:h-[1062px] w-screen h-screen md:px-[121px] px-5 md:py-[90px] py-[45px] z-[500]"
+					className="bg-[#ffffff] md:rounded-[50px] md:w-[669px] md:h-[1062px]  md:px-[121px] px-5 md:py-[90px] py-[45px] z-[500] m-auto "
 					style={{
 						boxShadow: "0px 4px 250px 0px rgba(0, 0, 0, 1.00)",
-						overflow: "auto",
 						position: "relative",
 					}}
 				>
@@ -100,7 +136,7 @@ const LoginPopupUi = () => {
 								<p className=" text-slate-400 md:text-lg text-sm font-normal font-['Montserrat'] leading-7">
 									Войдите в Ваш аккаунт через соцсети
 								</p>
-								<ul className="flex flex-row gap-4 justify-center items-center">
+								<ul className="grid  grid-cols-4 gap-4  justify-center items-center">
 									{socialMedia.map((socialMedia) => (
 										<li key={socialMedia.id}>
 											<a
@@ -120,19 +156,22 @@ const LoginPopupUi = () => {
 									))}
 								</ul>
 							</div>
-							<div className="md:my-[25px] flex flexrow items-center gap-7 my-[20px]">
+							<div className="md:my-[25px] flex flex-row justify-center items-center gap-7 my-[20px]">
 								<span className="w-44 h-px flex bg-neutral-100"></span>
 								<p className="text-center text-zinc-400 text-xs font-normal font-['Montserrat']">
 									или
 								</p>
 								<span className="w-44 h-px flex bg-neutral-100"></span>
 							</div>
+
+							{passwordError && (
+								<p className="text-red-500 text-base">{passwordError}</p>
+							)}
+
 							<form
-								action=""
+								action="#"
 								method="post"
-								onSubmit={(e) => {
-									e.preventDefault();
-								}}
+								onSubmit={onSubmit}
 								className="flex flex-col text-black md:gap-[17px] gap-[10px]"
 							>
 								<label className="text-gray-500 text-base" htmlFor="email">
@@ -153,7 +192,7 @@ const LoginPopupUi = () => {
 								<div className="relative">
 									<input
 										name="password"
-										autoComplete="current-password"
+										autoComplete="new-password"
 										type={passwordVisible ? "text" : "password"}
 										id="password"
 										required
@@ -172,67 +211,82 @@ const LoginPopupUi = () => {
 									/>
 								</div>
 
-								<label
-									className="text-gray-500 text-base"
-									htmlFor="confirmation"
-								>
-									Повторите пароль
-								</label>
-								<div className="relative">
-									<input
-										name="password"
-										autoComplete="current-password"
-										type={passwordVisible ? "text" : "password"}
-										id="confirmation"
-										required
-										className="passwordShow px-7 py-5 rounded-3xl border text-base border-solid border-slate-500 w-full "
-										placeholder="Введите пароль"
-									/>
-									<img
-										src={`./img/popupLoginUi/${
-											!passwordVisible ? "closeEye" : "openEye"
-										}.svg`}
-										alt="Переключить видимость пароля"
-										width={30}
-										height={30}
-										onClick={togglePasswordVisibility}
-										className="passwordIcon cursor-pointer absolute top-1/2 -translate-y-1/2 right-[30px] w-[30px] h-[30px]"
-									/>
-								</div>
-								<div>
-									<label
-										htmlFor="checkbox"
-										className="flex items-center relative gap-4 mt-6 cursor-pointer"
-									>
-										<input
-											onClick={() => setChecked(!checked)}
-											type="checkbox"
-											id="checkbox"
-											className={`w-7 h-7 bg-slate-200 rounded appearance-none cursor-pointer ${
-												checked ? "border-2 border-solid border-gray-300" : null
-											}`}
-										/>
-										{checked ? (
-											<img
-												className="absolute top-1/2 -translate-y-1/2 left-0 cursor-pointer"
-												width={28}
-												height={28}
-												src="./img/popupLoginUi/check.svg"
-												alt="check"
+								{login ? null : (
+									<div>
+										<label
+											className="text-gray-500 text-base"
+											htmlFor="confirmation"
+										>
+											Повторите пароль
+										</label>
+										<div className="relative md:mt-5 mt-2">
+											<input
+												name="confirmation"
+												autoComplete="new-password"
+												type={passwordVisible ? "text" : "password"}
+												id="confirmation"
+												required
+												className="passwordShow px-7 py-5 rounded-3xl border text-base border-solid border-slate-500 w-full "
+												placeholder="Введите пароль"
 											/>
-										) : null}
-										<span className="text-[#696F79] text-sm font-normal font-['Inter']">
-											Я хочу получать новости и акционные предложения
-										</span>
-									</label>
-								</div>
+											<img
+												src={`./img/popupLoginUi/${
+													!passwordVisible ? "closeEye" : "openEye"
+												}.svg`}
+												alt="Переключить видимость пароля"
+												width={30}
+												height={30}
+												onClick={togglePasswordVisibility}
+												className="passwordIcon cursor-pointer absolute top-1/2 -translate-y-1/2 right-[30px] w-[30px] h-[30px]"
+											/>
+										</div>
+										<div>
+											<label
+												htmlFor="checkbox"
+												className="flex items-center relative gap-4 mt-6 cursor-pointer"
+											>
+												<input
+													onClick={() => setChecked(!checked)}
+													type="checkbox"
+													id="checkbox"
+													className={`min-w-[28px] min-h-[28px] bg-slate-200 rounded appearance-none cursor-pointer ${
+														checked
+															? "border-2 border-solid border-gray-300"
+															: null
+													}`}
+												/>
+												{checked ? (
+													<img
+														className="absolute top-1/2 -translate-y-1/2 left-0 cursor-pointer"
+														width={28}
+														height={28}
+														src="./img/popupLoginUi/check.svg"
+														alt="check"
+													/>
+												) : null}
+												<span className="text-[#696F79] text-sm font-normal font-['Inter']">
+													Я хочу получать новости и акционные предложения
+												</span>
+											</label>
+										</div>
+									</div>
+								)}
 								<div className="mt-7">
-									<button
-										type="submit"
-										className="hover:scale-105 active:scale-95 transition-all duration-300  bg-blue-950 py-6 rounded-3xl flex justify-center w-full text-center text-white text-base font-medium font-['Montserrat']"
-									>
-										Зарегистрироваться
-									</button>
+									{login ? (
+										<button
+											type="submit"
+											className="hover:scale-105 active:scale-95 transition-all duration-300  bg-blue-950 py-6 rounded-3xl flex justify-center w-full text-center text-white text-base font-medium font-['Montserrat']"
+										>
+											Войти
+										</button>
+									) : (
+										<button
+											type="submit"
+											className="hover:scale-105 active:scale-95 transition-all duration-300  bg-blue-950 py-6 rounded-3xl flex justify-center w-full text-center text-white text-base font-medium font-['Montserrat']"
+										>
+											Зарегистрироваться
+										</button>
+									)}
 								</div>
 							</form>
 						</div>
