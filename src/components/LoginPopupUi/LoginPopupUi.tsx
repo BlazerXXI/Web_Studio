@@ -107,14 +107,14 @@ const LoginPopupUi = () => {
 			viewport={{ once: true }}
 			whileInView={{ opacity: 1 }}
 			transition={{ delay: 0.3 }}
-			className="h-full w-full fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#00000080] z-[500] overflow-y-scroll"
+			className="h-full w-full fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#00000080] z-[500] overflow-y-scroll max-h-screen"
 		>
 			<div
-				className="LoginPopupUi w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:flex md:justify-center md:items-center"
+				className="LoginPopupUi w-full h-screen fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:flex md:justify-center md:items-center"
 				onClick={handlePopupClick}
 			>
 				<div
-					className="bg-[#ffffff] md:rounded-[50px] md:w-[669px] md:h-[1062px]  md:px-[121px] px-5 md:py-[90px] py-[45px] z-[500]  LoginPopupUi__block"
+					className="bg-[#ffffff] md:rounded-[50px] md:w-[669px] md:h-[1062px]  md:px-[121px] px-5 md:py-[90px] py-[45px] z-[500] LoginPopupUi__block"
 					style={{
 						boxShadow: "0px 4px 250px 0px rgba(0, 0, 0, 1.00)",
 						position: "relative",
