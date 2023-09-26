@@ -6,6 +6,7 @@ import MenuUI from "../Menu/MenuUI";
 import { setLoginPopup } from "../../store/loginPopup";
 import LoginPopupUi from "../LoginPopupUi/LoginPopupUi";
 import { doc } from "prettier";
+import { setMenuState } from "../../store/menuSlice";
 
 const Header = () => {
 	const login = useSelector((state: any) => state.user.login);
@@ -23,12 +24,25 @@ const Header = () => {
 		localStorage.setItem("login", JSON.stringify(!login));
 	};
 
+	/**
+	 * Switches the state of the menu based on the current state.
+	 */
+	const toggleMenuState = () => {
+		// If the menu state is true, set it to false
+		menuState && dispatch(setMenuState(false));
+	};
+
+	/**
+	 * Toggles the menu state and sets the login popup to true.
+	 */
 	const loginHandle = () => {
-		dispatch(setLoginPopup(true));
+		toggleMenuState(); // Toggles the menu state.
+		dispatch(setLoginPopup(true)); // Sets the login popup to true.
 	};
 
 	const logOutHandle = () => {
 		loginSet();
+		toggleMenuState();
 		dispatch(setLoginPopup(false));
 	};
 
