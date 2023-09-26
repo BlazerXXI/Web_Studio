@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoginPopup } from "../../store/loginPopup";
 import { setLogin } from "../../store/userSlice";
@@ -60,10 +60,12 @@ const LoginPopupUi = () => {
 		setPasswordVisible(!passwordVisible);
 	};
 
+	const emailRef = useRef<HTMLInputElement | null>(null);
+	const passwordRef = useRef<HTMLInputElement | null>(null);
+	const confirmationRef = useRef<HTMLInputElement | null>(null);
+
 	const onSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-
-		// Получаем значения полей с помощью рефов
 		const email = emailRef.current?.value;
 		const password = passwordRef.current?.value;
 		const confirmation = confirmationRef.current?.value;
@@ -97,9 +99,6 @@ const LoginPopupUi = () => {
 		}
 	};
 
-	const emailRef = React.createRef<HTMLInputElement>();
-	const passwordRef = React.createRef<HTMLInputElement>();
-	const confirmationRef = React.createRef<HTMLInputElement>();
 	return (
 		<motion.div
 			initial={{
@@ -186,6 +185,7 @@ const LoginPopupUi = () => {
 									E-mail или Имя пользователя
 								</label>
 								<input
+									ref={emailRef}
 									name="email"
 									autoComplete="email"
 									type="email"
@@ -199,6 +199,7 @@ const LoginPopupUi = () => {
 								</label>
 								<div className="relative">
 									<input
+										ref={passwordRef}
 										name="password"
 										autoComplete={login ? "current-password" : "new-password"}
 										type={passwordVisible ? "text" : "password"}
@@ -229,6 +230,7 @@ const LoginPopupUi = () => {
 										</label>
 										<div className="relative md:mt-5 mt-2">
 											<input
+												ref={confirmationRef}
 												name="confirmation"
 												autoComplete={
 													login ? "current-password" : "new-password"
@@ -291,7 +293,7 @@ const LoginPopupUi = () => {
 												Войти в аккаунт
 											</button>
 
-											<p className="text-gray-500 text-base font-normal font-['Montserrat']">
+											<p className="text-gray-500 pt-[20px] text-center text-base font-normal font-['Montserrat']">
 												У Вас еще нет аккаунта?{" "}
 												<span
 													className="text-blue-700 cursor-pointer hover:opacity-70 transition-all duration-300"
@@ -309,7 +311,7 @@ const LoginPopupUi = () => {
 											>
 												Зарегистрироваться
 											</button>
-											<p className="text-gray-500 text-base font-normal font-['Montserrat']">
+											<p className="text-gray-500 pt-[20px] text-center text-base font-normal font-['Montserrat']">
 												У Вас уже есть аккаунт?{" "}
 												<span
 													className="text-blue-700 cursor-pointer hover:opacity-70 transition-all duration-300"
@@ -317,6 +319,12 @@ const LoginPopupUi = () => {
 												>
 													Войти
 												</span>
+											</p>
+
+											<p className="mt-[15px] pr-[33px] opacity-60 text-slate-500 text-sm font-normal font-['TT Mussels'] leading-tight">
+												*Нажимая кнопку “Зарегистрироваться” вы соглашаетсь на
+												обработку и хранение персональных данных в соответсвии с
+												политикой конфиденциальности
 											</p>
 										</div>
 									)}
