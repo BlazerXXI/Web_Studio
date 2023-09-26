@@ -5,7 +5,6 @@ import { setLogin } from "../../store/userSlice";
 import MenuUI from "../Menu/MenuUI";
 import { setLoginPopup } from "../../store/loginPopup";
 import LoginPopupUi from "../LoginPopupUi/LoginPopupUi";
-import { doc } from "prettier";
 import { setMenuState } from "../../store/menuSlice";
 
 const Header = () => {
