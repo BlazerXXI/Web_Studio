@@ -87,9 +87,9 @@ const LoginPopupUi = () => {
 				}
 			} else if (login) {
 				if (password.length < 8) {
-					setPasswordError("Пароль должен содержать не менее 8 символов.");
+					setPasswordError("Неверный логин или пароль");
 				} else if (!/\d/.test(password)) {
-					setPasswordError("Пароль должен содержать хотя бы одну цифру.");
+					setPasswordError("Неверный логин или пароль");
 				} else {
 					setPasswordError("");
 					dispatch(setLoginPopup(false));
