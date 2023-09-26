@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setLoginPopup } from "../../store/loginPopup";
 import { setLogin } from "../../store/userSlice";
 import { motion } from "framer-motion";
+import { css } from "@emotion/react";
 
 const LoginPopupUi = () => {
 	const login = useSelector((state: any) => state.user.login);
@@ -50,6 +51,7 @@ const LoginPopupUi = () => {
 	const closePopup = () => {
 		dispatch(setLoginPopup(false));
 		dispatch(setLogin(false));
+		document.body.classList.remove("login-popup-open");
 	};
 
 	const loginHandle = () => {
@@ -59,6 +61,10 @@ const LoginPopupUi = () => {
 	const togglePasswordVisibility = () => {
 		setPasswordVisible(!passwordVisible);
 	};
+
+	loginPopup
+		? document.body.classList.add("login-popup-open")
+		: document.body.classList.remove("login-popup-open");
 
 	const emailRef = useRef<HTMLInputElement | null>(null);
 	const passwordRef = useRef<HTMLInputElement | null>(null);
@@ -107,7 +113,7 @@ const LoginPopupUi = () => {
 			viewport={{ once: true }}
 			whileInView={{ opacity: 1 }}
 			transition={{ delay: 0.3 }}
-			className="h-full w-full fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#00000080] z-[500] overflow-y-scroll max-h-screen"
+			className="popupOverflow h-full w-full fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#00000080] z-[500] max-h-screen"
 		>
 			<div
 				className="LoginPopupUi w-full h-screen fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:flex md:justify-center md:items-center"

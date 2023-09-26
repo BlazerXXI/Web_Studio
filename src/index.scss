@@ -39,7 +39,6 @@ aside {
 
 html,
 body {
-	font-family: "sans-serif";
 	height: 100%;
 	width: 100%;
 	font-size: 100%;
@@ -48,6 +47,7 @@ body {
 	color: #000;
 	padding: 0 !important;
 	margin: 0 !important;
+	font-family: "sans-serif";
 }
 
 input,
@@ -630,6 +630,9 @@ main {
 	z-index: 50 !important;
 }
 
+.login-popup-open {
+	overflow: hidden !important;
+}
 // login-popup
 .login-popup {
 	* {
@@ -648,4 +651,8 @@ main {
 		border-radius: 25px;
 		padding: 22px 30px;
 	}
+}
+
+.popupOverflow {
+	overflow-y: scroll !important;
 }
