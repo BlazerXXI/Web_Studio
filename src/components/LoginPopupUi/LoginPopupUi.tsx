@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoginPopup } from "../../store/loginPopup";
 import { setLogin } from "../../store/userSlice";
@@ -13,15 +13,6 @@ const LoginPopupUi = () => {
 	const [passwordError, setPasswordError] = useState("");
 	const [passwordVisible, setPasswordVisible] = useState(false);
 	const [checked, setChecked] = useState(false);
-
-	const closePopup = () => {
-		dispatch(setLoginPopup(false));
-		dispatch(setLogin(false));
-	};
-
-	const togglePasswordVisibility = () => {
-		setPasswordVisible(!passwordVisible);
-	};
 
 	const socialMedia = [
 		{
@@ -50,22 +41,41 @@ const LoginPopupUi = () => {
 		},
 	];
 
-	const email = document.querySelector("#email") as HTMLInputElement;
-	const password = document.querySelector("#password") as HTMLInputElement;
-	const confirmation = document.querySelector(
-		"#confirmation"
-	) as HTMLInputElement;
-	const checkbox = document.querySelector("#checkbox") as HTMLInputElement;
+	const handlePopupClick = (e: React.MouseEvent) => {
+		if (e.target === e.currentTarget) {
+			closePopup();
+		}
+	};
 
-	const onSubmit = (e: any) => {
+	const closePopup = () => {
+		dispatch(setLoginPopup(false));
+		dispatch(setLogin(false));
+	};
+
+	const loginHandle = () => {
+		dispatch(setLogin(!login));
+	};
+
+	const togglePasswordVisibility = () => {
+		setPasswordVisible(!passwordVisible);
+	};
+
+	const emailRef = useRef<HTMLInputElement | null>(null);
+	const passwordRef = useRef<HTMLInputElement | null>(null);
+	const confirmationRef = useRef<HTMLInputElement | null>(null);
+
+	const onSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
+		const email = emailRef.current?.value;
+		const password = passwordRef.current?.value;
+		const confirmation = confirmationRef.current?.value;
 
 		if (email && password) {
 			if (confirmation) {
-				if (password.value === confirmation.value) {
-					if (password.value.length < 8) {
+				if (password === confirmation) {
+					if (password.length < 8) {
 						setPasswordError("Пароль должен содержать не менее 8 символов.");
-					} else if (!/\d/.test(password.value)) {
+					} else if (!/\d/.test(password)) {
 						setPasswordError("Пароль должен содержать хотя бы одну цифру.");
 					} else {
 						setPasswordError("");
@@ -75,18 +85,17 @@ const LoginPopupUi = () => {
 				} else {
 					setPasswordError("Пароли не совпадают");
 				}
-			} else {
-				if (password.value.length < 8) {
-					setPasswordError("Пароль должен содержать не менее 8 символов.");
-				} else if (!/\d/.test(password.value)) {
-					setPasswordError("Пароль должен содержать хотя бы одну цифру.");
+			} else if (login) {
+				if (password.length < 8) {
+					setPasswordError("Неверный логин или пароль");
+				} else if (!/\d/.test(password)) {
+					setPasswordError("Неверный логин или пароль");
 				} else {
 					setPasswordError("");
 					dispatch(setLoginPopup(false));
 					dispatch(setLogin(true));
 				}
 			}
-			return false;
 		}
 	};
 
@@ -98,11 +107,14 @@ const LoginPopupUi = () => {
 			viewport={{ once: true }}
 			whileInView={{ opacity: 1 }}
 			transition={{ delay: 0.3 }}
-			className="h-full w-full fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#00000080] z-[500] overflow-y-scroll"
+			className="h-full w-full fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#00000080] z-[500] overflow-y-scroll max-h-screen"
 		>
-			<div className="LoginPopupUi w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:flex md:justify-center md:items-center">
+			<div
+				className="LoginPopupUi w-full h-screen fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:flex md:justify-center md:items-center"
+				onClick={handlePopupClick}
+			>
 				<div
-					className="bg-[#ffffff] md:rounded-[50px] md:w-[669px] md:h-[1062px]  md:px-[121px] px-5 md:py-[90px] py-[45px] z-[500]  "
+					className="bg-[#ffffff] md:rounded-[50px] md:w-[669px] md:h-[1062px]  md:px-[121px] px-5 md:py-[90px] py-[45px] z-[500] LoginPopupUi__block"
 					style={{
 						boxShadow: "0px 4px 250px 0px rgba(0, 0, 0, 1.00)",
 						position: "relative",
@@ -163,7 +175,6 @@ const LoginPopupUi = () => {
 							{passwordError && (
 								<p className="text-red-500 text-base">{passwordError}</p>
 							)}
-
 							<form
 								action="#"
 								method="post"
@@ -174,6 +185,7 @@ const LoginPopupUi = () => {
 									E-mail или Имя пользователя
 								</label>
 								<input
+									ref={emailRef}
 									name="email"
 									autoComplete="email"
 									type="email"
@@ -187,8 +199,9 @@ const LoginPopupUi = () => {
 								</label>
 								<div className="relative">
 									<input
+										ref={passwordRef}
 										name="password"
-										autoComplete="new-password"
+										autoComplete={login ? "current-password" : "new-password"}
 										type={passwordVisible ? "text" : "password"}
 										id="password"
 										required
@@ -217,8 +230,11 @@ const LoginPopupUi = () => {
 										</label>
 										<div className="relative md:mt-5 mt-2">
 											<input
+												ref={confirmationRef}
 												name="confirmation"
-												autoComplete="new-password"
+												autoComplete={
+													login ? "current-password" : "new-password"
+												}
 												type={passwordVisible ? "text" : "password"}
 												id="confirmation"
 												required
@@ -269,19 +285,48 @@ const LoginPopupUi = () => {
 								)}
 								<div className="mt-7">
 									{login ? (
-										<button
-											type="submit"
-											className="hover:scale-105 active:scale-95 transition-all duration-300  bg-blue-950 py-6 rounded-3xl flex justify-center w-full text-center text-white text-base font-medium font-['Montserrat']"
-										>
-											Войти
-										</button>
+										<div>
+											<button
+												type="submit"
+												className="hover:scale-105 active:scale-95 transition-all duration-300  bg-blue-950 py-6 rounded-3xl flex justify-center w-full text-center text-white text-base font-medium font-['Montserrat']"
+											>
+												Войти в аккаунт
+											</button>
+
+											<p className="text-gray-500 pt-[20px] text-center text-base font-normal font-['Montserrat']">
+												У Вас еще нет аккаунта?{" "}
+												<span
+													className="text-blue-700 cursor-pointer hover:opacity-70 transition-all duration-300"
+													onClick={loginHandle}
+												>
+													Регистрация
+												</span>
+											</p>
+										</div>
 									) : (
-										<button
-											type="submit"
-											className="hover:scale-105 active:scale-95 transition-all duration-300  bg-blue-950 py-6 rounded-3xl flex justify-center w-full text-center text-white text-base font-medium font-['Montserrat']"
-										>
-											Зарегистрироваться
-										</button>
+										<div>
+											<button
+												type="submit"
+												className="hover:scale-105 active:scale-95 transition-all duration-300  bg-blue-950 py-6 rounded-3xl flex justify-center w-full text-center text-white text-base font-medium font-['Montserrat']"
+											>
+												Зарегистрироваться
+											</button>
+											<p className="text-gray-500 pt-[20px] text-center text-base font-normal font-['Montserrat']">
+												У Вас уже есть аккаунт?{" "}
+												<span
+													className="text-blue-700 cursor-pointer hover:opacity-70 transition-all duration-300"
+													onClick={loginHandle}
+												>
+													Войти
+												</span>
+											</p>
+
+											<p className="mt-[15px] pr-[33px] opacity-60 text-slate-500 text-sm font-normal font-['TT Mussels'] leading-tight">
+												*Нажимая кнопку “Зарегистрироваться” вы соглашаетсь на
+												обработку и хранение персональных данных в соответсвии с
+												политикой конфиденциальности
+											</p>
+										</div>
 									)}
 								</div>
 							</form>

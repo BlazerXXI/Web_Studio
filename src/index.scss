@@ -39,6 +39,7 @@ aside {
 
 html,
 body {
+	font-family: "sans-serif";
 	height: 100%;
 	width: 100%;
 	font-size: 100%;
@@ -210,7 +211,6 @@ video {
 	line-height: 150%;
 	border: 2px solid (#1bdc77);
 	transition: all 0.3s ease 0s;
-
 
 	&:active {
 		background: (#1bdc77);
