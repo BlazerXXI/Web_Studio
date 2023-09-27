@@ -115,13 +115,13 @@ const LoginPopupUi = () => {
 				onClick={handlePopupClick}
 			>
 				<div
-					className="bg-[#ffffff] md:rounded-[50px] md:w-[669px] md:h-[1062px]  md:px-[121px] px-5 md:py-[90px] py-[45px] LoginPopupUi__block z-50"
+					className="bg-[#ffffff] md:rounded-[50px] md:w-[669px] md:h-[1062px]  md:px-[121px] px-5 md:py-[90px] py-[45px] pt-[90px] LoginPopupUi__block z-50"
 					style={{
 						boxShadow: "0px 4px 250px 0px rgba(0, 0, 0, 1.00)",
 						position: "relative",
 					}}
 				>
-					<div className="absolute md:top-[45px] md:right-[45px] top-[20px] right-[20px]">
+					<div className="absolute md:top-[45px] md:right-[45px] top-[60px] right-[20px]">
 						<img
 							onClick={closePopup}
 							className="close cursor-pointer"
