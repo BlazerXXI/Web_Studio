@@ -51,7 +51,6 @@ const LoginPopupUi = () => {
 	const closePopup = () => {
 		dispatch(setLoginPopup(false));
 		dispatch(setLogin(false));
-		document.body.classList.remove("login-popup-open");
 	};
 
 	const loginHandle = () => {
@@ -61,10 +60,6 @@ const LoginPopupUi = () => {
 	const togglePasswordVisibility = () => {
 		setPasswordVisible(!passwordVisible);
 	};
-
-	loginPopup
-		? document.body.classList.add("login-popup-open")
-		: document.body.classList.remove("login-popup-open");
 
 	const emailRef = useRef<HTMLInputElement | null>(null);
 	const passwordRef = useRef<HTMLInputElement | null>(null);
@@ -113,10 +108,10 @@ const LoginPopupUi = () => {
 			viewport={{ once: true }}
 			whileInView={{ opacity: 1 }}
 			transition={{ delay: 0.3 }}
-			className="popupOverflow h-full w-full fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#00000080] z-[500] max-h-screen"
+			className="popupOverflow h-full w-full fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#00000080] max-h-screen"
 		>
 			<div
-				className="LoginPopupUi w-full h-screen fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:flex md:justify-center md:items-center"
+				className="LoginPopupUi w-full h-screen fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:flex md:justify-center md:items-center overflow-y-auto z-[500]"
 				onClick={handlePopupClick}
 			>
 				<div
