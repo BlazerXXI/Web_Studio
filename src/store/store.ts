@@ -4,7 +4,8 @@ import userSlice from "./userSlice";
 import menuSlice from "./menuSlice";
 import loginPopup from "./loginPopup";
 import email from "./email";
-import setLoginOrRegisterState from "./loginOrRegister";
+import openMenuSlice from "./openMenuSlice";
+import loginOrRegister from "./loginOrRegister";
 
 const store = configureStore({
 	reducer: {
@@ -12,7 +13,8 @@ const store = configureStore({
 		menu: menuSlice,
 		popup: loginPopup,
 		email: email,
-		loginOrRegister: setLoginOrRegisterState,
+		loginOrRegister: loginOrRegister,
+		openMenu: openMenuSlice,
 	},
 });
 

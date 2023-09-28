@@ -8,10 +8,13 @@ import LoginPopupUi from "../LoginPopupUi/LoginPopupUi";
 import { setMenuState } from "../../store/menuSlice";
 import { IRootState } from "../../store/store";
 import { setEmailValue } from "../../store/email";
+import { setOpenMenu } from "../../store/openMenuSlice";
+import ProfileUI from "../ProfileUI/ProfileUI";
 
 const Header = () => {
 	const login = useSelector((state: IRootState) => state.user.login);
 	const loginPopup = useSelector((state: IRootState) => state.popup.visible);
+	const openMenu = useSelector((state: IRootState) => state.openMenu.menu);
 	const menuState = useSelector((state: IRootState) => state.menu.open);
 	const email = useSelector((state: IRootState) => state.email.value);
 	const dispatch = useDispatch();
@@ -50,6 +53,13 @@ const Header = () => {
 		e.preventDefault();
 		localStorage.removeItem("email");
 		loginSet();
+	};
+
+	const profileHandle = (e: React.MouseEvent) => {
+		e.preventDefault();
+		openMenu === "profile"
+			? dispatch(setOpenMenu(""))
+			: dispatch(setOpenMenu("profile"));
 	};
 
 	return (
@@ -105,20 +115,17 @@ const Header = () => {
 							<p className="m-auto leading-4 loginButton">Log in</p>
 						</button>
 					) : (
-						<a href="/" className="md:hidden flex" onClick={logOutHandle}>
-							<img
-								src="/img/header/avatar.svg"
-								width="30"
-								height="30"
-								alt="avatar"
-							/>
-							<p
-								className="emailAddress "
-								onClick={(e) => {
-									e.preventDefault();
-								}}
-							></p>
-						</a>
+						<div>
+							<a href="/" className="md:hidden flex" onClick={profileHandle}>
+								<img
+									src="/img/header/avatar.svg"
+									width="30"
+									height="30"
+									alt="avatar"
+								/>
+							</a>
+							{openMenu === "profile" && <ProfileUI />}
+						</div>
 					)}
 					<MenuUI />
 					{!login ? (
@@ -132,7 +139,7 @@ const Header = () => {
 						<a
 							href="/"
 							className="hidden md:flex  items-center"
-							onClick={logOutHandle}
+							onClick={profileHandle}
 						>
 							<img
 								src="/img/header/avatar.svg"

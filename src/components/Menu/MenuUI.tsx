@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import style from "./Menu.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { setMenuState } from "../../store/menuSlice";
+import { setOpenMenu } from "../../store/openMenuSlice";
 
 const MenuUI = () => {
 	const loginPopup = useSelector((state: any) => state.popup.visible);
@@ -15,6 +16,7 @@ const MenuUI = () => {
 
 	const handleClickMenu = () => {
 		dispatch(setMenuState(!menuState));
+		dispatch(setOpenMenu(""));
 	};
 
 	if (window.location.href === window.location.origin + "") {
