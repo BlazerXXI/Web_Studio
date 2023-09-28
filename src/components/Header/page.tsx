@@ -124,7 +124,7 @@ const Header = () => {
 									alt="avatar"
 								/>
 							</a>
-							{openMenu === "profile" && <ProfileUI styles={openMenu === "profile" ? "block" : "hidden"} />}
+							{openMenu === "profile" && <ProfileUI />}
 						</div>
 					)}
 					<MenuUI />
