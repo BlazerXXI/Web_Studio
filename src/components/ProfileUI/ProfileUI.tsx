@@ -16,7 +16,7 @@ const ProfileUI = () => {
 			className={`ProfileUI font-['Montserrat'] bg-[#0b0e18] absolute px-6 mt-5 top-[81px] left-0 w-full h-screen transition-all duration-300`}
 		>
 			<div className="flex items-center gap-5 justify-start">
-				<a href="#">
+				<a href="/">
 					<img
 						src="./img/profile/profile.svg"
 						alt="avatar profile"
@@ -32,25 +32,26 @@ const ProfileUI = () => {
 
 			<ul className="flex flex-col gap-8 mt-[57px]">
 				<li>
-					<a className="flex items-center gap-5" href="#">
-						<img src="./img/profile/bag.svg" alt="" />
+					<a className="flex items-center gap-5" href="/">
+						<img src="./img/profile/profileMenu.svg" alt="" />
 						Личный кабинет
 					</a>
 				</li>
 				<li>
-					<a className="flex items-center gap-5" href="#">
+					<a className="flex items-center gap-5" href="/">
 						<img src="./img/profile/history.svg" alt="" />
 						Мои заказы
 					</a>
 				</li>
 				<li>
-					<a className="flex items-center gap-5" href="#">
-						<img src="./img/profile/log-out.svg" alt="" />
+					<a className="flex items-center gap-5" href="/">
+						<img src="./img/profile/bag.svg" alt="" />
 						Корзина
 					</a>
 				</li>
 				<li>
-					<button
+					<a
+						href="/"
 						className="flex items-center gap-5"
 						onClick={(e) => {
 							e.preventDefault();
@@ -59,9 +60,9 @@ const ProfileUI = () => {
 							window.location.reload();
 						}}
 					>
-						<img src="./img/profile/profileMenu.svg" alt="" />
+						<img src="./img/profile/log-out.svg" alt="" />
 						Выход
-					</button>
+					</a>
 				</li>
 			</ul>
 		</div>
