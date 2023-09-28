@@ -52,6 +52,13 @@ const Header = () => {
 		loginSet();
 	};
 
+	const profileHandle = (e: React.MouseEvent) => {
+		e.preventDefault();
+		toggleMenuState();
+		logOutHandle(e);
+		dispatch(setLoginPopup(false));
+	};
+
 	return (
 		<motion.header
 			initial={{ y: -100 }}
@@ -105,7 +112,7 @@ const Header = () => {
 							<p className="m-auto leading-4 loginButton">Log in</p>
 						</button>
 					) : (
-						<a href="/" className="md:hidden flex" onClick={logOutHandle}>
+						<a href="/" className="md:hidden flex" onClick={profileHandle}>
 							<img
 								src="/img/header/avatar.svg"
 								width="30"
@@ -132,7 +139,7 @@ const Header = () => {
 						<a
 							href="/"
 							className="hidden md:flex  items-center"
-							onClick={logOutHandle}
+							onClick={profileHandle}
 						>
 							<img
 								src="/img/header/avatar.svg"
