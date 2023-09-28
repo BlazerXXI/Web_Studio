@@ -655,3 +655,15 @@ main {
 		padding: 22px 30px;
 	}
 }
+
+.ProfileUI {
+	animation: ProfileUI 0.6s ease-in-out forwards;
+}
+@keyframes ProfileUI {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
