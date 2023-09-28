@@ -6,20 +6,27 @@ import MenuUI from "../Menu/MenuUI";
 import { setLoginPopup } from "../../store/loginPopup";
 import LoginPopupUi from "../LoginPopupUi/LoginPopupUi";
 import { setMenuState } from "../../store/menuSlice";
+import { IRootState } from "../../store/store";
+import { setEmailValue } from "../../store/email";
 
 const Header = () => {
-	const login = useSelector((state: any) => state.user.login);
-	const loginPopup = useSelector((state: any) => state.popup.visible);
-	const menuState = useSelector((state: any) => state.menu.open);
+	const login = useSelector((state: IRootState) => state.user.login);
+	const loginPopup = useSelector((state: IRootState) => state.popup.visible);
+	const menuState = useSelector((state: IRootState) => state.menu.open);
+	const email = useSelector((state: IRootState) => state.email.value);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		const loginRes = localStorage.getItem("login") === "true" ? true : false;
+		const emailValue = localStorage.getItem("email")?.slice(1, -1) || "";
+		dispatch(setEmailValue(emailValue));
 		dispatch(setLogin(loginRes));
-	}, [dispatch]);
+	});
+	const loginRes = localStorage.getItem("login") === "true" ? true : false;
 
 	const loginSet = () => {
 		dispatch(setLogin(!login));
+		toggleMenuState();
+		dispatch(setLoginPopup(false));
 		localStorage.setItem("login", JSON.stringify(!login));
 	};
 
@@ -39,10 +46,10 @@ const Header = () => {
 		dispatch(setLoginPopup(true)); // Sets the login popup to true.
 	};
 
-	const logOutHandle = () => {
+	const logOutHandle = (e: React.MouseEvent) => {
+		e.preventDefault();
+		localStorage.removeItem("email");
 		loginSet();
-		toggleMenuState();
-		dispatch(setLoginPopup(false));
 	};
 
 	return (
@@ -98,14 +105,20 @@ const Header = () => {
 							<p className="m-auto leading-4 loginButton">Log in</p>
 						</button>
 					) : (
-						<button className=" md:hidden" onClick={logOutHandle}>
+						<a href="/" className="md:hidden flex" onClick={logOutHandle}>
 							<img
 								src="/img/header/avatar.svg"
 								width="30"
 								height="30"
 								alt="avatar"
 							/>
-						</button>
+							<p
+								className="emailAddress "
+								onClick={(e) => {
+									e.preventDefault();
+								}}
+							></p>
+						</a>
 					)}
 					<MenuUI />
 					{!login ? (
@@ -116,14 +129,26 @@ const Header = () => {
 							<p className="m-auto loginButton">Log in</p>
 						</button>
 					) : (
-						<button className="hidden md:block" onClick={logOutHandle}>
+						<a
+							href="/"
+							className="hidden md:flex  items-center"
+							onClick={logOutHandle}
+						>
 							<img
 								src="/img/header/avatar.svg"
 								width="30"
 								height="30"
 								alt="avatar"
 							/>
-						</button>
+							<p
+								className="emailAddress"
+								onClick={(e) => {
+									e.preventDefault();
+								}}
+							>
+								{email}
+							</p>
+						</a>
 					)}
 				</div>
 			</div>

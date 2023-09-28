@@ -1,14 +1,21 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoginPopup } from "../../store/loginPopup";
 import { setLogin } from "../../store/userSlice";
 import { motion } from "framer-motion";
-import { css } from "@emotion/react";
+import { setEmailValue } from "../../store/email";
+import { setMenuState } from "../../store/menuSlice";
+import { IRootState } from "../../store/store";
+import { setLoginOrRegisterState } from "../../store/loginOrRegister";
 
 const LoginPopupUi = () => {
-	const login = useSelector((state: any) => state.user.login);
-	const loginPopup = useSelector((state: any) => state.popup.visible);
-	const menuState = useSelector((state: any) => state.menu.open);
+	const login = useSelector((state: IRootState) => state.user.login);
+	const loginPopup = useSelector((state: IRootState) => state.popup.visible);
+	const email = useSelector((state: IRootState) => state.email.value);
+	const menuState = useSelector((state: IRootState) => state.menu.open);
+	const loginOrRegister = useSelector(
+		(state: IRootState) => state.loginOrRegister.register
+	);
 	const dispatch = useDispatch();
 
 	const [passwordError, setPasswordError] = useState("");
@@ -48,13 +55,31 @@ const LoginPopupUi = () => {
 		}
 	};
 
+	window.addEventListener("keydown", (key) => {
+		if (key.key === "Escape") {
+			closePopup();
+		}
+	});
+
 	const closePopup = () => {
 		dispatch(setLoginPopup(false));
 		dispatch(setLogin(false));
 	};
 
 	const loginHandle = () => {
-		dispatch(setLogin(!login));
+		dispatch(setLoginOrRegisterState(!loginOrRegister));
+	};
+
+	useEffect(() => {
+		const emailValue = emailRef.current?.value || "";
+		setEmailValue(emailValue);
+	});
+
+	const LoginTrue = () => {
+		setPasswordError("");
+		dispatch(setLoginPopup(false));
+		dispatch(setLogin(true));
+		localStorage.setItem("login", JSON.stringify(!login));
 	};
 
 	const togglePasswordVisibility = () => {
@@ -70,6 +95,8 @@ const LoginPopupUi = () => {
 		const email = emailRef.current?.value;
 		const password = passwordRef.current?.value;
 		const confirmation = confirmationRef.current?.value;
+		dispatch(setEmailValue(localStorage.getItem("email") || ""));
+		localStorage.setItem("email", JSON.stringify(email));
 
 		if (email && password) {
 			if (confirmation) {
@@ -79,22 +106,18 @@ const LoginPopupUi = () => {
 					} else if (!/\d/.test(password)) {
 						setPasswordError("Пароль должен содержать хотя бы одну цифру.");
 					} else {
-						setPasswordError("");
-						dispatch(setLoginPopup(false));
-						dispatch(setLogin(true));
+						LoginTrue();
 					}
 				} else {
 					setPasswordError("Пароли не совпадают");
 				}
-			} else if (login) {
+			} else if (loginOrRegister) {
 				if (password.length < 8) {
 					setPasswordError("Неверный логин или пароль");
 				} else if (!/\d/.test(password)) {
 					setPasswordError("Неверный логин или пароль");
 				} else {
-					setPasswordError("");
-					dispatch(setLoginPopup(false));
-					dispatch(setLogin(true));
+					LoginTrue();
 				}
 			}
 		}
@@ -133,12 +156,14 @@ const LoginPopupUi = () => {
 					</div>
 					<div className="flex flex-col md:gap-10 gap-5 justify-center items-center">
 						<div>
-							<img
-								src="./img/popupLoginUi/logo.svg"
-								alt="logo"
-								width={212}
-								height={55}
-							/>
+							<a href="/">
+								<img
+									src="./img/popupLoginUi/logo.svg"
+									alt="logo"
+									width={212}
+									height={55}
+								/>
+							</a>
 						</div>
 						<div className="w-full">
 							<div className="flex flex-col justify-center items-center md:gap-10 gap-5">
@@ -189,9 +214,8 @@ const LoginPopupUi = () => {
 									ref={emailRef}
 									name="email"
 									autoComplete="email"
-									type="email"
+									type="text"
 									id="email"
-									required
 									className="px-7 py-5 rounded-3xl border text-base border-solid border-slate-500 justify-start items-start gap-2.5 inline-flex"
 									placeholder="Напишите свой E-mail"
 								/>
@@ -202,7 +226,9 @@ const LoginPopupUi = () => {
 									<input
 										ref={passwordRef}
 										name="password"
-										autoComplete={login ? "current-password" : "new-password"}
+										autoComplete={
+											loginOrRegister ? "current-password" : "new-password"
+										}
 										type={passwordVisible ? "text" : "password"}
 										id="password"
 										required
@@ -221,7 +247,7 @@ const LoginPopupUi = () => {
 									/>
 								</div>
 
-								{login ? null : (
+								{!loginOrRegister && (
 									<div>
 										<label
 											className="text-gray-500 text-base"
@@ -234,7 +260,7 @@ const LoginPopupUi = () => {
 												ref={confirmationRef}
 												name="confirmation"
 												autoComplete={
-													login ? "current-password" : "new-password"
+													loginOrRegister ? "current-password" : "new-password"
 												}
 												type={passwordVisible ? "text" : "password"}
 												id="confirmation"
@@ -285,7 +311,7 @@ const LoginPopupUi = () => {
 									</div>
 								)}
 								<div className="mt-7">
-									{login ? (
+									{loginOrRegister ? (
 										<div>
 											<button
 												type="submit"

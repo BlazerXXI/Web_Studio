@@ -154,6 +154,9 @@ header {
 		text-transform: uppercase;
 		transition: all 0.3s ease 0s;
 	}
+	.emailAddress {
+		text-transform: none;
+	}
 	.loginButton {
 		color: #fff;
 	}
@@ -184,7 +187,7 @@ header {
 			text-shadow: 1px 1px 5px #1bdc77;
 		}
 	}
-	.header-icons a {
+	.header-icons a:not(.emailAddress) {
 		transition: all 0.3s ease 0s;
 		&:hover {
 			transition: all 0.3s ease 0s;
@@ -652,4 +655,3 @@ main {
 		padding: 22px 30px;
 	}
 }
-
