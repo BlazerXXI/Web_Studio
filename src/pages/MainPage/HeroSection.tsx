@@ -21,7 +21,7 @@ const HeroSection = () => {
 						<span className="text-green-500">- изобрести его</span>
 					</h2>
 					<p className="font-normal text-lg green-vertical-line">
-						Web-студия OOJ — лучшие решения для вашего бизнеса по всем
+						Web-студия Blazer — лучшие решения для вашего бизнеса по всем
 						параметрам
 					</p>
 					<button className="btn-primary py-6 px-5">Связаться с нами</button>

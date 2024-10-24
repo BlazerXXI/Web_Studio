@@ -134,7 +134,7 @@ const LoginPopupUi = () => {
 			className="popupOverflow h-full w-full fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#00000080] max-h-screen"
 		>
 			<div
-				className="LoginPopupUi w-full h-screen fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:flex md:justify-center md:items-center overflow-y-auto"
+				className="LoginPopupUi w-full h-screen fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:flex md:justify-center overflow-y-auto"
 				onClick={handlePopupClick}
 			>
 				<div
